@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+#author:murongjin
+
 import platform
 import psutil
 
