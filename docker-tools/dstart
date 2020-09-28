@@ -1,0 +1,13 @@
+#!/bin/sh
+cd `dirname $0`
+BASE_DIR=$(pwd)
+source ${BASE_DIR}/config.sh
+
+#config network
+#if [ "`docker network ls -q -f name=${RJ_NETWORK} | wc -l`" == "0" ]; then
+#	docker network create -d bridge --subnet 10.11.8.0/16 ${RJ_NETWORK}
+#fi
+
+export APP_DATA=${APP_ROOT}$1
+
+docker-compose -f ${YML_ROOT}$1.yml -p $1 start

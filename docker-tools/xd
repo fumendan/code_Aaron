@@ -1,0 +1,8 @@
+#!/bin/sh
+cd `dirname $0`
+BASE_DIR=$(pwd)
+source ${BASE_DIR}/config.sh
+
+#stop base service
+PRJ=$1 docker-compose -f ${YML_ROOT}$1.yml -p $1 down 
+echo $PRJ

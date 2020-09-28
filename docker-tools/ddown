@@ -1,0 +1,9 @@
+#!/bin/sh
+cd `dirname $0`
+BASE_DIR=$(pwd)
+source ${BASE_DIR}/config.sh
+
+export APP_DATA=${APP_ROOT}$1
+
+#stop base service
+docker-compose -f ${YML_ROOT}$1.yml -p $1 down 

@@ -1,0 +1,24 @@
+#!/bin/sh
+cd $(dirname $0)
+BASE_DIR=$(pwd)
+source ${BASE_DIR}/config.sh
+
+
+if [ "${ENV_FLAG}" == "dev" ]; then
+./xu dc
+fi
+./u postgis
+./u mr
+./u base
+./xu dis
+./xu orbit
+./xu gdata
+./xu wechat
+./xu notice
+./xu user
+./xu satdata
+./xu weather
+./xu fire
+./xu forest
+./xu qweather
+for i in `cat w.conf`; do ./wu $i; done;
