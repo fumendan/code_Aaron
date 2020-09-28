@@ -1,5 +1,8 @@
 #-*- coding:utf-8 -*-
+
 """
+python2
+
 使用方法：
 执行脚本可添加参数，如：
 python parsemq.py aaa bbb
