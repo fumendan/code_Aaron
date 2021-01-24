@@ -1,0 +1,17 @@
+{
+  "rootpath": "E:/data/CCTVDATA",
+  "monitor": [
+    {
+      "name": "fax_riben",
+      "path": "E:\\data\\CCTVDATA\\fax\\riben",
+      "matchreg": "([\\d]{4})\\\\([\\d]{6})\\\\([\\d]{8})\\\\PRODUCT_FAX_(.*)_([\\d]{14})",
+      "label": 3
+    },
+    {
+      "name": "EC",
+      "path": "E:\\data\\CCTVDATA\\model\\EC",
+      "matchreg": "([\\d]{4})\\\\([\\d]{6})\\\\([\\d]{8})\\\\PRODUCT_NAFP_EC_([\\d]{14}_[\\d]{3})\\.nc",
+      "label": 3
+    }
+  ]
+}
