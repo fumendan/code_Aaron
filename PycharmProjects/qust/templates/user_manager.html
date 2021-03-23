@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block page_content %}
+<div class="col-md-6">
+
+    <!-- START BASIC TABLE SAMPLE -->
+    <div class="panel panel-default">
+        <div class="panel-heading ui-draggable-handle">
+            <h3 class="panel-title">用户列表</h3>
+        </div>
+        <div class="panel-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>Username</th>
+                        <th>email</th>
+                        <th>phone</th>
+                    </tr>
+                </thead>
+                {% for user in users %}
+                <tbody>
+                    <tr>
+                        <td>{{ user.id }}</td>
+                        <td>{{ user.username }}</td>
+                        <td>{{ user.email }}</td>
+                        <td>{{ user.phone }}</td>
+                    </tr>
+                </tbody>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+    <!-- END BASIC TABLE SAMPLE -->
+
+</div>
+{% endblock %}

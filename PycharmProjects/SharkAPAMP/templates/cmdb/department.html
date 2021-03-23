@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block page_content %}
+
+    <div class="row">
+    <div class="col-md-8">
+      <div class="col-md-8 col-md-offset-2">
+           <table id="customers2" class="table datatable dataTable no-footer" role="grid"
+               aria-describedby="customers2_info">
+            <thead>
+            <tr role="row">
+                <th class="sorting_asc" tabindex="0" aria-controls="customers2" rowspan="1" colspan="1"
+                    aria-sort="ascending" aria-label="Name: activate to sort column ascending">
+                    序号
+                </th>
+                <th class="sorting" tabindex="0" aria-controls="customers2" rowspan="1" colspan="1"
+                    aria-label="Position: activate to sort column ascending">
+                    ID
+                <th class="sorting" tabindex="0" aria-controls="customers2" rowspan="1" colspan="1"
+                    aria-label="Position: activate to sort column ascending">
+                    部门名称
+                </th>
+                <th class="sorting" tabindex="0" aria-controls="customers2" rowspan="1" colspan="1"
+                    aria-label="Position: activate to sort column ascending">
+                    负责人
+                </th>
+                <th class="sorting" tabindex="0" aria-controls="customers2" rowspan="1" colspan="1"
+                    aria-label="Position: activate to sort column ascending">
+                    负责人电话
+                </th>
+
+            </tr>
+            </thead>
+            <tbody>
+            {% for item in department_obj %}
+                <tr class="{% cycle 'success' "danger" "info" 'active'  'warning' %}" role="row">
+                    <td class="sorting_1">{{ forloop.counter }}</td>
+                    <td class="sorting_1">{{ item.id }}</td>
+                    <td class="sorting_1">{{ item.name }}</td>
+                    <td class="sorting_1">{{ item.supervisor.email }}</td>
+                    <td class="sorting_1">{{ item.supervisor.mobile }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+      </div>
+    </div>
+    </div>
+
+{% endblock %}

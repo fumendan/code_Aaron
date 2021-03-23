@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link type="text/css"  href="../static/Highcharts6/css/highcharts.css"/>
+
+</head>
+<body>
+<div class="row">
+        <hr >
+
+</div>
+    <div class="row">
+        <div class="col-md-4">
+            <dl>
+                <dt>1</dt>
+                <dd>11</dd>
+                <dd>12</dd>
+                <dd>
+                    <dl>
+                      <dt>33</dt>
+                      <dd>31</dd>
+                    </dl>
+                </dd>
+            </dl>
+        </div>
+        <div class="col-md-4">
+            下载进度：
+            <progress value="50" max="100"></progress>
+            <p>注释：<code> progress </code> 标签不适合用来表示度量衡（例如，磁盘空间使用情况或查询结果）。如需表示度量衡，请使用
+                <code> meter </code> 标签代替。
+            </p>
+        <hr style="color: #bb1111">
+
+        </div>
+    </div>
+<div id="container" style="height: 400px"></div>
+<script src="../static/js/jquery-3.3.1.js"></script>
+  <script type="text/javascript" src="../static/Highcharts6/highcharts.js"></script>
+
+    <script  src="../static/Highcharts6/highcharts-3d.js"></script>
+</body>
+
+<script>
+    $(function () {
+    $('#container').highcharts({
+        chart: {
+            type: 'column',
+            options3d: {
+                enabled: true,
+                alpha: 15,
+                beta: 15,
+                viewDistance: 25,
+                depth: 40
+            },
+            marginTop: 80,
+            marginRight: 40
+        },
+        title: {
+            text: '以性别划分的水果消费总量'
+        },
+        xAxis: {
+            categories: ['苹果', '橘子', '梨', '葡萄', '香蕉']
+        },
+        yAxis: {
+            allowDecimals: false,
+            min: 0,
+            title: {
+                text: '水果数量'
+            }
+        },
+        tooltip: {
+            headerFormat: '<b>{point.key}</b><br>',
+            pointFormat: '<span style="color:{series.color}">\u25CF</span> {series.name}: {point.y} / {point.stackTotal}'
+        },
+        plotOptions: {
+            column: {
+                stacking: 'normal',
+                depth: 40
+            }
+        },
+        series: [{
+            name: '小张',
+            data: [5, 3, 4, 7, 2],
+            stack: 'male'
+        }, {
+            name: '小王',
+            data: [3, 4, 4, 2, 5],
+            stack: 'male'
+        }, {
+            name: '小彭',
+            data: [2, 5, 6, 2, 1],
+            stack: 'female'
+        }, {
+            name: '小潘',
+            data: [3, 0, 4, 4, 3],
+            stack: 'female'
+        }]
+    });
+});
+</script>
+</html>

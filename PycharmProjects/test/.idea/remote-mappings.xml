@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="RemoteMappingsManager">
+    <list>
+      <list>
+        <remote-mappings server-id="python@ssh://root@192.168.122.118:22/usr/local/python3.6/bin/python3" />
+        <remote-mappings server-id="python@sftp://root@192.168.122.118:22/root/.virtualenvs/gogo/bin/python3">
+          <settings>
+            <list>
+              <mapping local-root="$PROJECT_DIR$/../dd/bin" remote-root="/root/demo" />
+            </list>
+          </settings>
+        </remote-mappings>
+        <remote-mappings server-id="python@sftp://root@192.168.122.118:22/root/.virtualenvs/kk/bin/python3">
+          <settings>
+            <list>
+              <mapping local-root="$PROJECT_DIR$/../bb" remote-root="/root/python" />
+            </list>
+          </settings>
+        </remote-mappings>
+        <remote-mappings server-id="python@sftp://root@192.168.122.118:22/root/.virtualenvs/one/bin/python3">
+          <settings>
+            <list>
+              <mapping local-root="$PROJECT_DIR$/../one" remote-root="/root/one" />
+            </list>
+          </settings>
+        </remote-mappings>
+      </list>
+    </list>
+  </component>
+</project>

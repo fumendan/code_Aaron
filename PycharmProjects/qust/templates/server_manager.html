@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+
+{% block css_code %}
+    <style>
+        #content {
+            font-size: 14px;
+            font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+            color: #333;
+        }
+
+        input[type="text"], input[type="password"], input[type="email"],
+        input[type="url"], input[type="number"], textarea, select, .vTextField {
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 5px 6px;
+            margin-top: 0;
+        }
+
+        .form-row {
+            overflow: hidden;
+            padding: 10px;
+            font-size: 13px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .submit-row {
+            padding: 12px 14px;
+            margin: 0 0 20px;
+            background: #f8f8f8;
+            border: 1px solid #eee;
+            border-radius: 4px;
+            text-align: right;
+            overflow: hidden;
+        }
+
+        input {
+            vertical-align: middle;
+        }
+
+    </style>
+{% endblock %}
+
+{% block page_content %}
+
+    <div id="content" class="colM">
+        <h1>增加 server machine</h1>
+        <div id="content-main">
+            <form action="{% url 'servers:server_add' %}" method="post">
+                {% csrf_token %}
+                <div>
+                    <fieldset class="module aligned ">
+                        <div class="form-row field-server_ip">
+                            <div>
+                                <label for="id_server_ip">IP地址:</label>
+                                <input name="server_ip" id="id_server_ip" required=""  type="text">
+                            </div>
+                        </div>
+                        <div class="form-row field-hostname">
+                            <div>
+                                <label class="required" for="id_hostname">主机名:</label>
+                                <input name="hostname" class="vTextField" maxlength="128"
+                                       required="" id="id_hostname"
+                                       type="text">
+                            </div>
+                        </div>
+                        <div class="form-row field-os">
+                            <div>
+                                <label class="required" for="id_os">系统版本:</label>
+                                <input name="os" class="vTextField" maxlength="128" required="" id="id_os"
+                                       type="text">
+                            </div>
+                        </div>
+                        <div class="form-row field-cpu_kernel">
+                            <div>
+                                <label class="required" for="id_cpu_kernel">CPU内核版本:</label>
+                                <input name="cpu_kernel" class="vTextField" maxlength="128" required=""
+                                       id="id_cpu_kernel" type="text">
+                            </div>
+                        </div>
+                        <div class="form-row field-mem_total">
+                            <div>
+                                <label for="id_mem_total">Total内存GB:</label>
+                                <input name="mem_total" step="any" id="id_mem_total" required=""  type="number">
+                            </div>
+                        </div>
+                        <div class="form-row field-mem_used">
+                            <div>
+                                <label for="id_mem_used">Used内存GB:</label>
+                                <input name="mem_used" step="any" id="id_mem_used" required=""  type="number">
+                            </div>
+                        </div>
+                        <div class="form-row field-disk_capacity">
+                            <div>
+                                <label for="id_disk_capacity">磁盘容量GB:</label>
+                                <input name="disk_capacity" step="any" id="id_disk_capacity" required=""  type="number">
+                            </div>
+                        </div>
+                    </fieldset>
+                    <div class="submit-row">
+                        <input value="保存" class="default" name="_save" type="submit">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

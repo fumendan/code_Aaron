@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block page_content %}
+<div class="row">
+      <div class="col-md-8 col-md-offset-2">
+           <table id="customers2" class="table datatable dataTable no-footer" role="grid"
+               aria-describedby="customers2_info">
+            <thead>
+            <tr role="row">
+                <th class="sorting_asc" tabindex="0" aria-controls="customers2" rowspan="1" colspan="1"
+                    aria-sort="ascending" aria-label="Name: activate to sort column ascending">
+                    序号
+                </th>
+                <th class="sorting" tabindex="0" aria-controls="customers2" rowspan="1" colspan="1"
+                    aria-label="Position: activate to sort column ascending">
+                    IP地址
+                </th>
+                <th class="sorting" tabindex="0" aria-controls="customers2" rowspan="1" colspan="1"
+                    aria-label="Position: activate to sort column ascending">
+                    主机名
+                </th>
+                <th class="sorting" tabindex="0" aria-controls="customers2" rowspan="1" colspan="1"
+                    aria-label="Position: activate to sort column ascending">
+                    系统版本
+                </th>
+                <th class="sorting" tabindex="0" aria-controls="customers2" rowspan="1" colspan="1"
+                    aria-label="Position: activate to sort column ascending">
+                    CPU内核版本
+                </th>
+                <th class="sorting" tabindex="0" aria-controls="customers2" rowspan="1" colspan="1"
+                    aria-label="Position: activate to sort column ascending">
+                    total内存GB
+                </th>
+                <th class="sorting" tabindex="0" aria-controls="customers2" rowspan="1" colspan="1"
+                    aria-label="Position: activate to sort column ascending">
+                    used内存GB
+                </th>
+                <th class="sorting" tabindex="0" aria-controls="customers2" rowspan="1" colspan="1"
+                    aria-label="Position: activate to sort column ascending">
+                    硬盘容量GB
+                </th>
+
+            </tr>
+            </thead>
+            <tbody>
+            {% for item in idc_obj %}
+                <tr class="{% cycle 'success' "danger" "info" 'active'  'warning' %}" role="row">
+                    <td class="sorting_1">{{ item.id }}</td>
+                    <td class="sorting_1">{{ item.server_ip }}</td>
+                    <td class="sorting_1">{{ item.hostname }}</td>
+                    <td class="sorting_1">{{ item.os }}</td>
+                    <td class="sorting_1">{{ item.cpu_kernel }}</td>
+                    <td class="sorting_1">{{ item.mem_total }}</td>
+                    <td class="sorting_1">{{ item.mem_used }}</td>
+                    <td class="sorting_1">{{ item.disk_capacity }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+{% endblock %}

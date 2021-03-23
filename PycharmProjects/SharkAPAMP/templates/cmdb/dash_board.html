@@ -1,0 +1,493 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+    <div class="row">
+        <div class="col-md-3">
+
+            <!-- START WIDGET SLIDER -->
+            <div class="widget widget-default widget-carousel">
+                <div class="owl-carousel" id="owl-example">
+                    <div>
+                        <div class="widget-title">Total Visitors</div>
+                        <div class="widget-subtitle">27/08/2014 15:23</div>
+                        <div class="widget-int">3,548</div>
+                    </div>
+                    <div>
+                        <div class="widget-title">Returned</div>
+                        <div class="widget-subtitle">Visitors</div>
+                        <div class="widget-int">1,695</div>
+                    </div>
+                    <div>
+                        <div class="widget-title">New</div>
+                        <div class="widget-subtitle">Visitors</div>
+                        <div class="widget-int">1,977</div>
+                    </div>
+                </div>
+                <div class="widget-controls">
+                    <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip" data-placement="top"
+                       title="Remove Widget"><span class="fa fa-times"></span></a>
+                </div>
+            </div>
+            <!-- END WIDGET SLIDER -->
+
+        </div>
+        <div class="col-md-3">
+
+            <!-- START WIDGET MESSAGES -->
+            <div class="widget widget-default widget-item-icon" onclick="location.href='pages-messages.html';">
+                <div class="widget-item-left">
+                    <span class="fa fa-envelope"></span>
+                </div>
+                <div class="widget-data">
+                    <div class="widget-int num-count">48</div>
+                    <div class="widget-title">New messages</div>
+                    <div class="widget-subtitle">In your mailbox</div>
+                </div>
+                <div class="widget-controls">
+                    <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip" data-placement="top"
+                       title="Remove Widget"><span class="fa fa-times"></span></a>
+                </div>
+            </div>
+            <!-- END WIDGET MESSAGES -->
+
+        </div>
+        <div class="col-md-3">
+            <!-- START WIDGET REGISTRED -->
+            <div class="widget widget-default widget-item-icon" onclick="location.href='pages-address-book.html';">
+                <div class="widget-item-left">
+                    <span class="fa fa-user"></span>
+                </div>
+                <div class="widget-data">
+                    <div class="widget-int num-count">375</div>
+                    <div class="widget-title">Registred users</div>
+                    <div class="widget-subtitle">On your website</div>
+                </div>
+                <div class="widget-controls">
+                    <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip" data-placement="top"
+                       title="Remove Widget"><span class="fa fa-times"></span></a>
+                </div>
+            </div>
+            <!-- END WIDGET REGISTRED -->
+        </div>
+        <div class="col-md-3">
+
+            <!-- START WIDGET CLOCK -->
+            <div class="widget widget-info widget-padding-sm">
+                <div class="widget-big-int plugin-clock">00:00</div>
+                <div class="widget-subtitle plugin-date">Loading...</div>
+                <div class="widget-controls">
+                    <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip" data-placement="left"
+                       title="Remove Widget"><span class="fa fa-times"></span></a>
+                </div>
+                <div class="widget-buttons widget-c3">
+                    <div class="col">
+                        <a href="#"><span class="fa fa-clock-o"></span></a>
+                    </div>
+                    <div class="col">
+                        <a href="#"><span class="fa fa-bell"></span></a>
+                    </div>
+                    <div class="col">
+                        <a href="#"><span class="fa fa-calendar"></span></a>
+                    </div>
+                </div>
+            </div>
+            <!-- END WIDGET CLOCK -->
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4 col-md-offset-1">
+            <div class="panel panel-default">
+                <div class="panel-heading ui-draggable-handle">
+                    <div class="panel-title-box">
+                        <h3>Visitors</h3>
+                        <span>Visitors (last month)</span>
+                    </div>
+                    <ul class="panel-controls" style="margin-top: 1px;">
+                        <li><a href="#" class="panel-fullscreen"><span class="fa fa-expand"></span></a></li>
+                        <li><a href="#" class="panel-refresh"><span class="fa fa-refresh"></span></a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span
+                                    class="fa fa-cog"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#" class="panel-collapse"><span class="fa fa-angle-down"></span>
+                                    Collapse</a></li>
+                                <li><a href="#" class="panel-remove"><span class="fa fa-times"></span> Remove</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="panel-body padding-0">
+                    <div class="chart-holder" id="pie_container1" style="height:400px;min-width:300px">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-md-offset-2">
+            <div class="panel panel-default">
+                <div class="panel-heading ui-draggable-handle">
+                    <div class="panel-title-box">
+                        <h3>Visitors</h3>
+                        <span>Visitors (last month)</span>
+                    </div>
+                    <ul class="panel-controls" style="margin-top: 1px;">
+                        <li><a href="#" class="panel-fullscreen"><span class="fa fa-expand"></span></a></li>
+                        <li><a href="#" class="panel-refresh"><span class="fa fa-refresh"></span></a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span
+                                    class="fa fa-cog"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#" class="panel-collapse"><span class="fa fa-angle-down"></span>
+                                    Collapse</a></li>
+                                <li><a href="#" class="panel-remove"><span class="fa fa-times"></span> Remove</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="panel-body padding-0">
+                    <div class="chart-holder" id="pie_container2">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-default">
+                <div class="panel-heading ui-draggable-handle">
+                    <div class="panel-title-box">
+                        <h3>Visitors</h3>
+                        <span>Visitors (last month)</span>
+                    </div>
+                    <ul class="panel-controls" style="margin-top: 1px;">
+                        <li><a href="#" class="panel-fullscreen"><span class="fa fa-expand"></span></a></li>
+                        <li><a href="#" class="panel-refresh"><span class="fa fa-refresh"></span></a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span
+                                    class="fa fa-cog"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#" class="panel-collapse"><span class="fa fa-angle-down"></span>
+                                    Collapse</a></li>
+                                <li><a href="#" class="panel-remove"><span class="fa fa-times"></span> Remove</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="panel-body padding-0">
+                    <div id="container" style="height: 680px"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block js_plugins %}
+<!-- Highcharts 画图插件，实现可视化数据，有着丰富详细的 API 文档，推荐-->
+<!--<script typy="text/javascript" src="/static/Highcharts6/highcharts.js"></script>-->
+<script src="/static/Highcharts6/highstock.js"></script>
+<script src="/static/Highcharts6/highcharts-3d.js"></script>
+<!--图表主题模块-->
+<!--<script src="/static/Highcharts6/themes/dark-unica.js"></script>-->
+<!--导出图表模块-->
+<script src="/static/Highcharts6/modules/exporting.js"></script>
+{% endblock %}
+
+{% block js_code %}
+
+    <script>
+
+      $.getJSON("/cmdb/dash_board.html/", function (callback) {
+        /*  需要后端返回的数据格式
+        callback = {
+            'asset_status': [['上架', 2], ['在线', 9], ['离线', 3]],
+             'asset_type': [['服务器', 11], ['路由器', 1], ['交换机', 2]]
+        }
+       */
+        var status_list = callback.asset_status;
+        var type_list = callback.asset_type;
+        PieView('#pie_container1', '资产状态分布饼图', status_list);
+        PieView('#pie_container2', '资产类型分布饼图', type_list);
+        highchart(callback)
+    });
+
+    //  Highcharts 实现的 3D 饼图
+    function PieView(dom_id, pie_title, charts_data) {
+        $(dom_id).highcharts({
+            chart: {
+                type: 'pie',
+                options3d: {
+                    enabled: true,
+                    alpha: 45,
+                    beta: 0
+                }
+            },
+            title: {
+                text: pie_title
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    depth: 45,  // 厚度
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.name}'
+                    }
+                }
+            },
+            series: [{
+                type: 'pie',
+                name: '3D饼图',
+                data: charts_data
+            }]
+        });
+    };
+
+    //  Highcharts 实现的 3D 柱状图
+    function highchart(charts_data) {
+
+        /*
+           {
+               'asset_status': [['上架', 2], ['在线', 9], ['离线', 3]],
+               'asset_type': [['服务器', 11], ['路由器', 1], ['交换机', 2]]
+           }
+        */
+        var dispy_names = [];
+        var dispy_data = [];
+
+        for (var idx in charts_data['asset_type']) {
+            // 把资产类型的名字添加到数组中
+            dispy_names.push(charts_data['asset_type'][idx][0]);
+            dispy_data.push(charts_data['asset_type'][idx][1]);
+        }
+        ;
+
+
+        var options = {
+            chart: {
+                type: 'column',  // bar(条形图) column(柱状图）
+                options3d: {
+                    enabled: true,
+                    alpha: 15,
+                    beta: 15,
+                    viewDistance: 25,
+                    depth: 40
+                },
+                marginTop: 80,
+                marginRight: 40
+            },
+            title: {
+                text: '资产分类柱状 3D 图'
+            },
+
+            colors: ['#50B432', '#ED561B',
+                /*'#058DC7','#DDDF00',
+                '#24CBE5', '#64E572',
+                '#FF9655', '#FFF263',
+                '#6AF9C4', '#91e8e1'*/],
+
+            xAxis: {
+                // ['服务器','路由器','交换机']
+                categories: dispy_names
+            },
+            yAxis: {
+                allowDecimals: false,
+                min: 0,
+                title: {
+                    text: '资产数量'
+                }
+            },
+            tooltip: {  // 鼠标悬停时，显示的内容
+                headerFormat: '<b>{point.key}</b><br>',
+                pointFormat: '<span style="color:{series.color}">\u25CF</span> {series.name}: {point.y} / {point.stackTotal}'
+            },
+            plotOptions: {
+                column: {  // 设置列的属性
+                    //stacking: 'male',  // male normal
+                    depth: 60,         //  柱子的厚度
+                    //colorByPoint:true, //  自动设置每一列的颜色
+                }
+            },
+
+            /*
+                {
+                    'asset_status': [['上架', 2], ['在线', 9], ['离线', 3]],
+                    'asset_type': [['服务器', 11], ['路由器', 1], ['交换机', 2]]
+                }
+            */
+
+            series: [{
+                name: '资产分类',
+                data: dispy_data,
+                //stack: 'normal'
+            }, {
+                name: '在线',
+                data: [2, 4, 5]
+            }],
+        };
+        var chart = Highcharts.chart('container', options);
+    };
+
+
+    // Echarts.js（百度画图） 实现平面视图开始
+    /*function AssetView(chart_data) {
+
+
+        //  注意下面的关键字，若是关键字写错了，是不会有报错提示的，只会不生效
+        //绘制柱状图
+        // 基于准备好的 dom， 初始化 echarts 实例
+        var myChart = echarts.init(document.getElementById('dashboard-yange-1'));
+        // 指定图表的配置项和数据
+        var option = {
+            tooltip: {}, // 提示信息，当鼠标放在每个柱子上，会提示出当前项的数值
+            legend: {     // 说明信息，图例的意思，表示此张图表代表的项目本意；如销量，占比，排名等
+                data: ['资产类型']   //
+            },
+            xAxis: {
+                data: chart_data.names
+            }, // X 轴
+            yAxis: {},      // Y 轴
+            series: [{     // 系列
+                name: '数量', // 和上面的 legend 同名会展示在 提示信息中
+                type: 'bar',
+                data: chart_data.data
+            }]
+        };
+        // 使用刚指定的配置项和数据绑定到实例化的图表上
+        myChart.setOption(option);
+        // 函数体结束
+    } */
+
+    /* function MyPie() {
+        //绘制南丁格尔图
+        var myPieChart = echarts.init(document.getElementById('pie'));
+
+        myPieChart.setOption({
+
+            tooltip: {
+                formatter: "{a}<br/>{b}:{c} ({d}%)"
+            },
+            series: [
+                {
+                    name: '应用占用办百分比展示',
+                    type: 'pie',
+                    radius: ['90%', '50%'], // 外圆占比，内圆空白占比
+                    data: [
+                        {value: 305, name: '视频'},
+                        {value: 265, name: '游戏'},
+                        {value: 350, name: '工单管理'},
+                        {value: 335, name: '国际支付'},
+                        {value: 400, name: '搜索'}
+                    ],
+                    /*
+                    * 这里data属性值不像入门教程里那样每一项都是单个数值，
+                    * 而是一个包含 name 和 value 属性的对象，
+                    * ECharts 中的数据项都是既可以只设成数值，
+                    * 也可以设成一个包含有名称、该数据图形的样式配置、标签配置的对象
+                    * */
+                    //roseType: 'angle',  // ECharts 中的饼图也支持通过设置 roseType 显示成南丁格尔图；
+                    // 南丁格尔图会通过半径的长度表示数据的大小。。
+                    // angle 翻译为： 角度
+
+                    /*
+                    * ECharts 中有一些通用的样式，诸如阴影、透明度、颜色、边框颜色、边框宽度等，
+                    * 这些样式一般都会在系列的 itemStyle 里设置.
+                    * itemStyle都会有normal和emphasis两个选项，normal选项是正常展示下的样式，
+                    * emphasis是鼠标 hover 时候的高亮样式。
+                    * 可能更多的时候是 hover 的时候通过阴影突出。
+                     */
+                    /*itemStyle:{
+                        normal: {
+                            // 设置扇形颜色
+                            color: '#c23531',
+                            shadowBlur: '200',
+                            shadowColor: 'rgba(0,0,0,0.5)',
+                        },*/
+                    /*
+                    emphasis: {
+                        shadowBlur: 200,  // 阴影大小
+                        shadowOffsetX: 0, //  阴影水平方向的偏移
+                        shardowOffsetY: 0, // 阴影垂直方向的偏移
+                        shadowColor: 'rgba(0,0,0,0.5)',  // 阴影颜色
+                        textStyle: {       // 文本颜色局部设置
+                             color: 'rgba(255, 255, 255, 0.3)',
+                        },
+                    },
+                {,*/
+                   /* labelLine: {
+                        normal: {
+                            lineStyle: {  // 饼图的话还要将标签的视觉引导线的颜色设为浅色
+                                color: 'rgba(255,25,255,0.3)',
+                            },
+                        },
+                    },
+
+                },
+            ],
+            //backgroundColor: '#2c343c', //背景色是全局的，所以直接在 option 下设置 backgroundColor
+            textStyle: {                  // 文本颜色全局设置
+                color: 'rgba(255, 255, 255, 2)'
+            },
+
+            /*
+            * ECharts 中每个扇形颜色的可以通过分别设置 data 下的数据项实现。
+            * data: [{
+            value:400,
+            name:'搜索引擎',
+            itemStyle: {
+                normal: {
+                    color: '#c23531'
+                }
+            }
+            } , ...]
+            *但是这次因为只有明暗度的变化，所以有一种更快捷的方式是通过 visualMap 组件将数值的大小映射到明暗度
+            * */
+
+    {#        visualMap: {#}
+    {#            // 不显示 visualMap 组件，只用于明暗度的映射#}
+    {#            show: false,#}
+    {#            // 映射的最小值为 80#}
+    {#            min: 80,#}
+    {#            // 映射的最大值为 600#}
+    {#            max: 600,#}
+    {#            inRange: {#}
+    {#                // 明暗度的范围是 0 到 1#}
+    {#                colorLightness: [0, 1],#}
+    {#            },#}
+    {#        },#}
+    {#    })#}
+    {#  */#}
+
+    // Echarts.js（百度画图）
+
+    //file_handle()
+    /*function file_handle(){
+                $("#file-simple").fileinput({
+                        showUpload: false,
+                        showCaption: false,
+                        browseClass: "btn btn-danger",
+                        fileType: "any"
+                });
+                $("#filetree").fileTree({
+                    root: '/',
+                    script: '/static/assets/filetree/jqueryFileTree.php',
+                    expandSpeed: 100,
+                    collapseSpeed: 100,
+                    multiFolder: false
+                }, function(file) {
+                    alert(file);
+                }, function(dir){
+                    setTimeout(function(){
+                        page_content_onresize();
+                    },200);
+                });
+            };
+            */
+    </script>
+
+{% endblock %}

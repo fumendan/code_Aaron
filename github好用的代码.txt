@@ -1,0 +1,5 @@
+人工智能算法博客
+https://codechina.csdn.net/mirrors/eastmountyxz/imageprocessing-python.git
+
+ceph官方文档
+https://github.com/drunkard/ceph-readable-doc.git

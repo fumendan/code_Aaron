@@ -1,0 +1,520 @@
+{% extends 'base.html' %}
+
+{% block page_title %} 任务管理模块 {% endblock %}
+
+{% block page_content %}
+    <div class="row">
+        <div style="background-color: azure;height: 50px;text-align: center">
+            <h3 style="word-spacing: 20px;vertical-align: middle;">Ansible 自 动 化 平 台 Ad-Hoc 模 式</h3>
+        </div>
+        <form role="form" action="{% url 'octopus:run_tasks' %}" method="POST" class="form-inline">
+            {% csrf_token %}
+            <div class="col-md-12" style="padding-top: 20px">
+
+                <div class="form-group col-md-2">
+                    <label for="id_module_type" style="font-size: 16px">模块类型</label>
+                    {{ task_form_obj.module_type }}
+                    {{ task_form_obj.eerrors.module_type.0 }}
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="id_module_name" style="font-size: 16px">模块名称</label>
+                    {{ task_form_obj.module_name }}
+                    {{ task_form_obj.eerrors.module_name.0 }}
+                    {#                    <select id="id_module_name"  name="module_name" class="form-control select border-radius">#}
+                    {#                        <option>shell</option>#}
+                    {#                        <option>copy</option>#}
+                    {#                    </select>#}
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="id_module_name" style="font-size: 16px">远程用户</label>
+                    {{ task_form_obj.remote_user }}
+                    {{ task_form_obj.eerrors.remote_user.0 }}
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-12" style="padding-top: 20px">
+                    <div class="form-group has-success col-md-8">
+                        <label for="id_exec_args" style="font-size: 16px">命令参数</label>
+                        {{ task_form_obj.exec_args }}
+                    </div>
+                    <button id="id_adhoc_submit" class="btn btn-info" style="margin-bottom: -10px">执&nbsp行&nbsp命&nbsp令
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <hr>
+
+    <div class="content-frame">
+
+        <!-- START CONTENT FRAME TOP -->
+        <div class="content-frame-top" style="background-color: azure">
+            <div class="page-title col-md-offset-3">
+                <h3 style="word-spacing: 50px;"> 任 务 执 行 过 程 展 示</h3>
+            </div>
+        </div>
+        <!-- END CONTENT FRAME TOP -->
+
+        <!-- START CONTENT FRAME LEFT -->
+        <div class="content-frame-left">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h3 class="push-up-0">选 择 主 机</h3>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <form action="" method="GET">
+                                <!--
+                                HTML5 元素: datalist
+                                datalist 元素规定输入域的选项列表。
+
+                                列表是通过 datalist 内的 option 元素创建的。
+
+                                如需把 datalist 绑定到输入域(input)，请用输入域的 list 属性引用 datalist 的 id
+
+                                提示：option 元素永远都要设置 value 属性。
+                                <datalist id="task_list">
+                                    <option label="W3School" value="http://www.w3school.com.cn"/>
+                                    <option label="Google" value="http://www.google.com"/>
+                                    <option label="Microsoft" value="http://www.microsoft.com"/>
+                                </datalist>
+                                -->
+                                <div class="col-md-8">
+                                    <div class="">
+                                        <div class="checkbox">
+
+                                            {% for invent_group, invent_hosts_list in inventory_hosts.items %}
+                                                    <button class="btn btn-success  yan_toggle"
+                                                            style="margin-top: 10px;">
+                                                        组名： {{ invent_group }}
+                                                        <span class="badge badge-danger" style="margin-left: 15px">
+                                                        {{ invent_hosts_list|length }}
+                                                    </span>
+                                                    </button>
+                                                    {% for host_item in invent_hosts_list %}
+                                                        <label style="display:none">
+                                                            <input type="checkbox" class="shark_check"
+                                                                   value="{{ host_item.id }}">
+                                                            主机名： {{ host_item.host_name }}
+                                                        </label>
+                                                    {% endfor %}
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-md4">
+
+
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h3 class="push-up-0">输入任务 ID 进行查询结果</h3>
+                    <div class="row">
+                        <div class="col-md-12">
+                            {#                            <form action="" method="GET">#}
+                            {#                                <!--#}
+                            {#                                HTML5 元素: datalist#}
+                            {#                                datalist 元素规定输入域的选项列表。#}
+                            {##}
+                            {#                                列表是通过 datalist 内的 option 元素创建的。#}
+                            {##}
+                            {#                                如需把 datalist 绑定到输入域，请用输入域的 list 属性引用 datalist 的 id#}
+                            {##}
+                            {#                                提示：option 元素永远都要设置 value 属性。#}
+                            {#                                -->#}
+                            {#                                <div class="col-md-8">#}
+                            {#                                <input type="text" list="task_list" class="form-control" name="task_id" autofocus="autofocus"/>#}
+                            {#                                <datalist id="task_list">#}
+                            {#                                    <option label="W3School" value="http://www.w3school.com.cn"/>#}
+                            {#                                    <option label="Google" value="http://www.google.com"/>#}
+                            {#                                    <option label="Microsoft" value="http://www.microsoft.com"/>#}
+                            {#                                </datalist>#}
+                            {#                                </div>#}
+                            {#                                <div class="col-md4">#}
+                            {##}
+                            {#                                <button type="submit" class="btn btn-info"> <!--style="border-radius: 5px-->#}
+                            {#                                    查询#}
+                            {#                                </button>#}
+                            {#                                    </div>#}
+                            {#                            </form>#}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END CONTENT FRAME LEFT -->
+
+        <!-- START CONTENT FRAME BODY -->
+        <div class="content-frame-body">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <h3>任&nbsp&nbsp务&nbsp&nbsp执&nbsp&nbsp行&nbsp&nbsp结&nbsp&nbsp果</h3>
+                        </div>
+                        <div class="col-md-2 col-md-offset-5">
+                            <button id="stop_timer" class="btn btn-info col-md-offset-1" hidden="hidden">
+                                手&nbsp&nbsp动&nbsp&nbsp停&nbsp&nbsp止&nbsp&nbsp获&nbsp&nbsp取&nbsp&nbsp任&nbsp&nbsp务&nbsp&nbsp结&nbsp&nbsp果
+                            </button>
+                        </div>
+                    </div>
+{#                    <div class="row">#}
+{#                        <div class="col-md-12">#}
+{#                            执行进度#}
+{##}
+{#                            <progress class="progress progress-bar-colorful" style="width: 100%;  height: 20px"#}
+{#                                      value="50" max="100"></progress>#}
+{##}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="progress">#}
+{#                        <div class="progress-bar progress-bar-colorful" role="progressbar" aria-valuenow="40"#}
+{#                             aria-valuemin="0" aria-valuemax="100" style="width: 40%">#}
+{#                            <span>10％</span>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="progress">#}
+{#                        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45"#}
+{#                             aria-valuemin="0" aria-valuemax="100" style="width: 45%">#}
+{#                            <span>45％完成</span>#}
+{#                        </div>#}
+{#                    </div>#}
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <select>
+                                <optgroup label="Swedish Cars">
+                                    <option value="volvo">Volvo</option>
+                                    <option value="saab">Saab</option>
+                                </optgroup>
+
+                                <optgroup label="German Cars">
+                                    <option value="mercedes">Mercedes</option>
+                                    <option value="audi">Audi</option>
+                                </optgroup>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-md-12">
+                            <div class="timeline timeline-right">
+                                <!-- START TIMELINE ITEM -->
+                                <div class="timeline-item timeline-main">
+                                    <div class="timeline-date">任务执行过程</div>
+                                </div>
+                                <!-- END TIMELINE ITEM -->
+                                <!-- START TIMELINE ITEM -->
+                                <div id="id_done">
+                                </div>
+                                <!-- END TIMELINE ITEM -->
+
+                                <!-- START TIMELINE ITEM -->
+                                <div id="id_execution">
+                                </div>
+
+                                <!-- END TIMELINE ITEM -->
+
+                                <!-- START TIMELINE ITEM -->
+                                <div class="timeline-item timeline-main">
+                                    <div class="timeline-date">
+                                        <a href="#"><span class="fa fa-map-marker"></span>起始位置</a>
+                                    </div>
+                                </div>
+                                <!-- END TIMELINE ITEM -->
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- END CONTENT FRAME BODY -->
+    </div>
+
+{% endblock %}
+
+{% block js_code %}
+
+    <script type="text/javascript">
+
+        $(".yan_toggle").on('click', function () {
+            $(this).nextUntil(".yan_toggle") .toggle();
+            return false;
+        });
+
+
+        $("#id_adhoc_submit").on('click', function () {
+            // 用于向后他发送任务请求
+            var target_host = $("#id_target_host").val();
+            var module_type = $("#id_module_type").val();
+            var module_name = $("#id_module_name").val();
+            var remote_user = $("#id_remote_user").val();
+            var exec_args = $("#id_exec_args").val();
+            var select_id = [];
+            var checked_obj = $("input.shark_check:checked");
+
+            $.each(checked_obj,function (idx,val) {
+                var v = $(val).val()
+                //console.log(v)
+                select_id.push(v)
+            });
+
+            console.log(select_id)
+
+            $.post("{% url 'octopus:run_tasks' %}",
+                {
+                    'csrfmiddlewaretoken': '{{ csrf_token }}',
+                    'yanaa': "[1,3,3]",
+                    'select_hosts_id': JSON.stringify(select_id),
+                    'target_host': target_host,
+                    module_type: module_type,
+                    module_name: module_name,
+                    remote_user: remote_user,
+                    exec_args: exec_args
+                }, function (callback) {
+
+                    var task_info = JSON.parse(callback);
+                    var task_id = task_info.task_id;
+                    console.log('task_id', task_id);
+                    if (task_id) {
+                        result_timer = setTimeout(function run_timer(tsk_id) {
+                            get_task_result(tsk_id);
+                            result_timer = setTimeout(function () {
+                                run_timer(task_id)
+                            }, 2000)
+                        }, 1000);
+                    }
+                });
+            return false;
+        });
+
+
+        //$.schedule(get_task_result(task_id), 1000)
+
+        // 清除定时器按钮
+        $("#stop_timer").on('click', function () {
+            stop_get_task_result(result_timer);
+            return false;
+        });
+
+
+        // 清除计时器函数
+        function stop_get_task_result(arg) {
+            clearTimeout(arg);
+            console.log("定时器已清除");
+        };
+
+        // 清除计时器函数结束
+
+        function get_task_result(tsk_id) {
+            // 用于过去任务执行结果
+            //console.log(tsk_id);
+            $.getJSON(
+                "{% url 'octopus:get_tasks_result' %}",
+                {"task_id": tsk_id},
+                function (callback) {
+
+                    // 获取到执行任务过程的结果后，循环 process_info,把执行任务的详情
+                    {#if (Object.keys(callback).length == 2){#}
+                    {#    #}
+                    {#   };#}
+
+                    /*
+                        task = info['task_content']
+                        for i,v in task.items():
+                            if task[i]:
+                                for y,x in v.items():
+                                    print(y)
+                                    print(x['msg']['cmd'])
+                    */
+
+                    if (Object.keys(callback).length > 1) {
+                        var start_time = callback["start_time"];
+                        var task_content = callback["task_content"];
+                        var process_info = callback["process_info"];
+
+                        var add_content_ele = "";
+                        var add_ele = "";
+                        process_info.reverse()
+                        //  循环执行任务的过程信息
+                        $.each(process_info, function (idx, item_dic) {
+                            var task_execution_ele = '<div class="timeline-item timeline-item-right">' +
+                                '                                    <div class="timeline-item-info">开始时间' + start_time + '</div>' +
+                                '                                    <div class="timeline-item-icon"><span class="fa fa-desktop"></span></div>' +
+                                '                                    <div class="timeline-item-content">' +
+                                '                                        <div class="timeline-heading padding-bottom-0" style="padding-bottom: 10px;">' +
+                                '                                            <div class="row">' +
+                                '                                                <div class="col-md-2">' +
+                                '                                                    <h3>进&nbsp&nbsp行&nbsp&nbsp中</h3>' +
+                                '                                                </div>' +
+                                '                                                <div class="col-md-5">' +
+                                '                                                     <span>  更新时间：' + item_dic.update_time + '</span>' +
+                                '                                                </div>' +
+                                '                                                <div class="col-md-5">' +
+                                '                                                     <span>  命令参数：</span>' +
+                                '                                                </div>' +
+                                '                                            </div>' +
+                                '                                        </div>' +
+                                '                                        <div class="timeline-body comments">' +
+                                '                                            <div class="comment-item">' +
+                                '                                                <div class="tasks ui-sortable" id="tasks_progreess">' +
+                                '                                                    <div class="task-item task-success" style="">' +
+                                '                                                        <div class="task-text ui-sortable-handle">' +
+                                '                                                        <details>' +
+                                '                                                            <summary>任务状态码：' + item_dic.status_code + '点我看详情</summary>' +
+                                '                                                            <pre>' + item_dic.detail + '</pre>' +
+                                '                                                        </details>' +
+                                '                                                        </div>' +
+                                '                                                    </div>' +
+                                '                                                </div>' +
+                                '                                            </div>' +
+                                '                                        </div>' +
+                                '                                    </div>' +
+                                '                                </div>';
+
+                            add_ele += task_execution_ele;
+                            $("#id_execution").html(add_ele)
+                        }); //end each process_info
+
+                        //  循环执行任务的结果信息
+                        $.each(task_content, function (info, item) {
+                            if (info === "success" || info === "failed") {
+                                var map_inf = {"failed": "btn-danger", "success": "btn-success"};
+                                var btn_type = map_inf[info];
+                                if (info === "success"){
+                                    var task_cmd = "result.msg.cmd";
+                                    var task_stdout = "result.msg.stdout";
+                                    var task_start_time = "result.msg.stat";
+                                    var task_end_time = "result.msg.end";
+                                    var task_time_consuming = "result.msg.delta";
+                                }else{
+                                    var task_cmd = "result.cmd";
+                                    var task_stdout = "result.stderr_lines";
+                                    var task_start_time = "start_time";
+                                    var task_end_time = "result.end";
+                                    var task_time_consuming = "result.delta";
+                                };
+
+                                $.each(item, function (h, result) {
+                                    console.log(h + "-->" + eval(task_cmd))
+
+                                    var task_done_ele = '<div class="timeline-item timeline-item-right">' +
+                                        '<div id="id_hosts" class="timeline-item-info">' +
+                                        start_time +
+                                        '</div><div class="timeline-item-icon"><span class="fa fa-desktop"></span></div>' +
+                                        '<div class="timeline-item-content"> ' +
+                                        '<div class="timeline-heading padding-bottom-0" style="padding-bottom: 10px;">' +
+                                        '<div class="row"><div class="col-md-4"><h3>已&nbsp&nbsp完&nbsp&nbsp成&nbsp&nbsp' +
+                                        '<button type="button" class="btn ' + btn_type +'">' + info +
+                                        '</button></div></h3>' +
+                                        '<div class="col-md-8">' +
+                                        '<span>命令参数：&nbsp&nbsp' + eval(task_cmd) +
+                                        '</span></div></div></div><div class="timeline-body comments"><div class="comment-item">' +
+                                        '<div class="tasks ui-sortable" id="tasks_completed">' +
+                                        '<div class="task-item task-danger task-complete">' +
+                                        '<div class="task-text ui-sortable-handle"><details><summary>' +
+                                        '任务执行详情&nbsp&nbsp&nbsp<div btn btn-default>' + h + '</div>' +
+                                        '</summary><pre>' + eval(task_stdout) +
+                                        '</pre></details></div>' +
+                                        '<div class="task-footer">' +
+                                        '<div class="pull-left">' +
+                                        '<span class="fa fa-clock-o"></span>' +
+                                        '<span style="vertical-align: inherit;"> ' +
+                                        '开始时间:&nbsp&nbsp' + eval(task_start_time) + '&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp' +
+                                        '</span>' +
+                                        '</div>' +
+                                        '<div class="pull-left">' +
+                                        '<span class="fa fa-clock-o"></span>' +
+                                        '<span style="vertical-align: inherit;"> ' +
+                                        '结束时间:&nbsp&nbsp' + eval(task_end_time) +
+                                        '</span>' +
+                                        '</div>' +
+                                        '<div class="pull-right">' +
+                                        '<span class="fa fa-clock-o"></span>' +
+                                        '<span style="vertical-align: inherit;"> ' +
+                                        '耗时:&nbsp&nbsp' + eval(task_time_consuming) +
+                                        '</span>' +
+                                        '</div>' +
+                                        '</div>' +
+                                        '</div></div></div></div></div></div>';
+                                    add_content_ele += task_done_ele
+                                    $("#id_done").html(add_content_ele)
+                                });
+                            }
+                            if (info === "failed") {
+                                var btn_type = "btn-danger"
+                            }
+                            if (info === "unreachable") {
+                                $.each(item, function (k, v) {
+                                    var task_done_ele = '<div class="timeline-item timeline-item-right">' +
+                                        '<div id="id_hosts" class="timeline-item-info">' +
+                                        start_time +
+                                        '</div><div class="timeline-item-icon"><span class="fa fa-desktop"></span></div>' +
+                                        '<div class="timeline-item-content"> ' +
+                                        '<div class="timeline-heading padding-bottom-0" style="padding-bottom: 10px;">' +
+                                        '<div class="row"><div class="col-md-4"><h3>已&nbsp&nbsp完&nbsp&nbsp成&nbsp&nbsp' +
+                                        '<button type="button" class="btn btn-warning">' + info +
+                                        '</button></div></h3>' +
+                                        '<div class="col-md-8">' +
+                                        '<span>命令参数：&nbsp&nbsp'  +
+                                        '</span></div></div></div><div class="timeline-body comments"><div class="comment-item">' +
+                                        '<div class="tasks ui-sortable" id="tasks_completed">' +
+                                        '<div class="task-item task-danger task-complete">' +
+                                        '<div class="task-text ui-sortable-handle"><details><summary>' +
+                                        '任务执行详情&nbsp&nbsp&nbsp<div btn btn-default></div>' +
+                                        '</summary><pre>' + k + ":" + v +
+                                        '</pre></details></div>' +
+                                        '<div class="task-footer">' +
+                                        '<div class="pull-left">' +
+                                        '<span class="fa fa-clock-o"></span>' +
+                                        '<span style="vertical-align: inherit;"> ' +
+                                        '开始时间:&nbsp&nbsp' +
+                                        '</span>' +
+                                        '</div>' +
+                                        '<div class="pull-left">' +
+                                        '<span class="fa fa-clock-o"></span>' +
+                                        '<span style="vertical-align: inherit;"> ' +
+                                        '结束时间:&nbsp&nbsp' +
+                                        '</span>' +
+                                        '</div>' +
+                                        '<div class="pull-right">' +
+                                        '<span class="fa fa-clock-o"></span>' +
+                                        '<span style="vertical-align: inherit;"> ' +
+                                        '耗时:&nbsp&nbsp' +
+                                        '</span>' +
+                                        '</div>' +
+                                        '</div>' +
+                                        '</div></div></div></div></div></div>';
+                                    add_content_ele += task_done_ele
+                                    $("#id_done").html(add_content_ele)
+                                });
+                            }
+
+                            if (task_content[info]) {
+                            }
+                            ;
+
+                        }); // end each task_content
+                    }
+                    ;
+
+                    if (Object.keys(callback).length === 3 && result_timer) {
+                        stop_get_task_result(result_timer)
+                    }
+                    ;
+                });
+        };
+
+    </script>
+
+{% endblock %}

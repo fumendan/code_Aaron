@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block page_content %}
+  <div class="row">
+      <div class="col-md-12">
+           <table id="customers2" class="table datatable dataTable no-footer" role="grid"
+               aria-describedby="customers2_info">
+            <thead>
+            <tr role="row">
+                <th class="sorting_asc" tabindex="0" aria-controls="customers2" rowspan="1" colspan="1"
+                    aria-sort="ascending" aria-label="Name: activate to sort column ascending">
+                    序号
+                </th>
+                <th class="sorting" tabindex="0" aria-controls="customers2" rowspan="1" colspan="1"
+                    aria-label="Position: activate to sort column ascending">
+                    ID
+                </th>
+                <th class="sorting" tabindex="0" aria-controls="customers2" rowspan="1" colspan="1"
+                    aria-label="Position: activate to sort column ascending">
+                    主机名
+                </th>
+                <th class="sorting" tabindex="0" aria-controls="customers2" rowspan="1" colspan="1"
+                    aria-label="Position: activate to sort column ascending">
+                    主机 IP
+                </th>
+                <th class="sorting" tabindex="0" aria-controls="customers2" rowspan="1" colspan="1"
+                    aria-label="Position: activate to sort column ascending">
+                    归属组
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for item in inventory_list_obj %}
+                <tr class="{% cycle 'success' "danger" "info" 'warning' 'active' %}" role="row" >
+                    <td class="sorting_1" style="vertical-align: middle">{{ forloop.counter }}</td>
+                    <td class="sorting_1" style="vertical-align: middle">{{ item.id }}</td>
+                    <td class="sorting_1" style="vertical-align: middle">{{ item.host.hostname }}</td>
+                    <td class="sorting_1" style="vertical-align: middle">{{ item.host.manage_ip }}</td>
+                    <td style="vertical-align: middle">
+                        <table>
+                                {% for g in item.group.all %}
+                        <tr>
+                            <td class="sorting_1">{{ g }}</td>
+                        </tr>
+                    {% endfor %}
+            </table>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+      </div>
+  </div>
+{% endblock %}

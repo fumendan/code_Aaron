@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!--
+   我是静态网页 html 的注释,可以单行，
+   也可以多行。
+   -->
+
+   <!--<head>头部标签</head>-->
+   <!--标签：
+   1. 主动闭合标签都是成对出现的，如：
+   <body>这里写内容，可以嵌套其他的标签，比如：
+   <a>内容</a>
+   </body>
+     注意：对于主动闭合的标签，建议每次都成对儿的先写上，再写其属性和内容，这样不容易忘记。
+
+   2. 自闭合标签，只有一个大于号和小于号组合而成，如：
+   <meta  内容/>
+     注意：对于自闭合标签，在其最后的斜杠不是必须的，但是建议加上，这好拍错，看起来也比较整齐划一。
+
+   3. 在所有的标签中都可以针对标签的种类，设置自身的属性；如：
+   <a id="a1">这里 a1 就是这个 a 标签的属性，这个属性叫做 ID 号，这在一个HTML文本中必须是唯一的</a>
+   具体有哪些属性，具体下面会针对不同的标签来说明。
+   -->
+   <head>
+       <!--设置整个页面的字符集编码-->
+      <meta charset="UTF-8" />
+        <!--刷新,下面是定义每30秒刷新一次这个页面-->
+      <!--<meta http-equiv="Refresh" Content="30"/>-->
+
+       <!-- 禁用浏览器缓存 -->
+       <meta http-equiv="pragma" content="no-cache"/>
+
+      <!--设置页面在打开几秒后跳转到目标URL-->
+       <!--<meta http-equiv="Refresh" Content="5; URL=http://www.sharkyun.com"/>-->
+        <!--设置关键字，用于在搜索引擎上通过这些关键字进行搜索时，能够搜索到这个网址-->
+        <meta name="keywords" content="鲨鱼，鲨鱼云，私有云，云，开发者，python"/>
+        <!--设置网址的描述性信息-->
+        <meta name="description" content="这是鲨鱼云网站简单介绍信息，描述了网站的主要功能、业务范围，等信息"/>
+        <!--设置用最新的 IE 引擎去渲染HTML,这是为了兼容IE浏览器-->
+        <meta http-equiv="X-UA-Compatible"  content="IE=Edge" />
+        <!--设置头部图标-->
+        <link rel="shortcut icon" href="./shark.ico" sizes="16x16"/>
+
+       <!-- 定义基础的 url -->
+       <base href://"www.qfedu.com" target="_blank">
+        <!--头部标题-->
+       <title>鲨鱼云</title>
+       <style>
+           .c1>p{
+               color: red;
+               font-size: 30px;
+               height: 30px;
+               background: orange;
+           }
+           .c1>p:hover{
+               color: blue;
+               font-size: 50px;
+               transition: all 1000ms ease-in-out;
+           }
+
+       </style>
+
+
+
+
+   </head>
+   <body>
+   <div class="c1">
+       <p>hello world</p>
+   </div>
+
+
+
+
+
+<!--================================================================================-->
+
+   <!--再谈标签
+   标签分为两大类：
+   1. 块级标签
+   如：-->
+   <h1>我最大</h1>
+   <h6>我最小</h6>
+   特点：每个都独占一行
+   <!--2. 内联标签
+   如：
+   -->
+   <a>我不会独占一行，每个执行会用一个空格隔开，注意我后面会有一个空格</a>
+   <a>我显示的时候回和上面是同一行</a>
+   <!--一大波符号-->
+   <!--http://www.cnblogs.com/web-d/archive/2010/04/16/1713298.html-->
+
+   <!--段落标签 p 同时它是一个块标签，同时每一个p标签直接会有行间距，id="p1"是给这个标签设置了一个id-->
+   <p id="p1">第一段</p>
+   <p id="p2">第二段</p>
+
+   <!--NB的 a 标签，同时它是一个内联标签-->
+   <!--特性一：可以设置跳转,就是在页面上点击它，会跳转到目标页面（称为重定向）
+    或者同页面的另一个标签处（称为锚）-->
+   <!--重定向，其中 target="_blank"是在一个新的标签页面打开-->
+
+   <!--先说一个换行标签：<br> 可以在内联标签中或者在一个块标签内换行-->
+   <a>我下面要换行了哦<br>我已经换行了</a><br>
+   <a href="http://www.baidu.com" target="_blank">百度</a><br>
+   <!--锚,需要指定跳转到某一标签的 id，下面的 p100 就是ID号-->
+   <a href="#p100">跳到第一百段</a>
+    <!--设置点击一个图片进行跳转-->
+    <p>点击下方图片进行跳转</p>
+    <a href="http://www.meizitu.com/">
+        <!--src 图片绝对或者相对路径；alt 假如图片不能显示，则显示这里的文字,跳转功能不受影响；title 当鼠标放在这个图片上时，会出现的内容-->
+        <img src="meizi.jpg" alt="性感背影" title="这背影令人难忘"/>
+    </a><br/>
+    <div>
+        我是比较纯洁的标签，没有太多的限制，比较有利于进行CSS的修饰，
+        同时我是块标签
+    </div>
+    <spen>我也是比较纯洁的标签，没有太多的限制，比较有利于进行CSS的修饰，同时我是内联标签</spen>
+    <spen>我是不会换行的，同时我是内联标签</spen>
+    <!--标题标签-->
+    <h1>标题一</h1>
+    <h2>标题二</h2>
+
+    <!--列表-->
+    <h3>以 点 标识的菜单</h3>
+        <ul>
+            <li>菜单一</li>
+            <li>菜单二</li>
+        </ul>
+
+    <h3>有序列表 </h3>
+        <ol>
+            <li>菜单一</li>
+            <li>菜单二</li>
+        </ol>
+        <ol>
+            <li>菜单一</li>
+            <li>菜单二</li>
+        </ol>
+
+    <h3> 倒序列表 </h3>
+        <ol start="10" reversed>
+            <li> 一 </li>
+            <li> 二 </li>
+            <li> 三 </li>
+
+
+        </ol>
+
+
+    <h3>自定义缩进的菜单，可以自定义多个标题，及其每个标题下的内容</h3>
+    <dl>
+        <dt>标题一</dt>
+        <dd>内容一</dd>
+        <dd>内容二</dd>
+
+        <dt>标题二</dt>
+        <dd>内容一</dd>
+        <dd>内容二</dd>
+    </dl>
+    <h3>表格</h3>
+    <!--border="1"表格最外边的边框线,粗细是 1 (基本是最小的了，只接受整数)-->
+    <table border="1">
+        <!-- thead table head的缩写，表头的意思-->
+        <thead>
+            <tr>
+                <th>序号</th>
+                <th>主机名</th>
+                <th>端口号</th>
+            </tr>
+        </thead>
+        <!--tbody 表的主体-->
+        <tbody>
+            <!--第一行-->
+            <tr>
+                <td>1</td>
+                <!--colspan="2"设置合并单元格，向右移动总共占2个格；即列合并-->
+                <td colspan="2">host1.com</td>
+                <!--<td>80</td>当设置的有合并单元格时，被占用的表格中内容就不应该再有了-->
+            </tr>
+            <!--第二行-->
+            <tr>
+                <td>2</td>
+                <td>host2.com</td>
+                <td>80</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <!--rowspan="2"设置合并单元格，向下移动,总共占2个格(即行合并)-->
+                <td rowspan="2">host2.com</td>
+                <td>80</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <!--<td>host2.com</td>因为上面的一格设置了向下合并单元格，所以此处内容应该删除-->
+                <td>80</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>host5.com</td>
+                <td>80</td>
+            </tr>
+        </tbody>
+    </table>
+   <p id="p100">第一百段</p>
+
+    <!--和后天交互的标签，提交表单等-->
+    <!--
+    action  提交到哪儿
+    method  提交的方法：
+            - GET 方法是把提交的内容放到 http 的 head 信息中，内容会是一个字典的形式
+            - POST 方法是把提交的内容放到 http 的 body 信息中，内容会是一个字典的形式
+    enctype="mutipart/form-data"  是提交文件或图片专用的属性
+    -->
+    <form action="http://192.168.56.128/index/" method="POST" enctype="multipart/form-data">
+        <!--input 用于设置提交表单，这个标签也是内联标签-->
+        <!--
+        普通文本框
+        type 定义类型
+        name 定义一个key
+        value 定义一个值
+        最终提交给后台的数据应该是这种形式:
+        {"username":"shark"}
+        假如有多个值，会是下面的样子：
+        {"username":["name1","name2"]}
+        -->
+        <!--出现一个输入框，用户可以输入内容；type="text"表示输入的内容是字符类型
+    并且，用 for="id"  来和标签关联，效果就是:
+    当在页面上用鼠标点击 lanbel标签定义的内容时（这里是：用户名），输入框就会被自动选中
+    -->
+        <a>
+            用户名：<input type="text" name="username" /><br>
+        </a>
+        <!--在文本空内显示提示的内容，鼠标点击时就消失-->
+        <input type="text" name="username" placeholder="请输入用户名"/><br/>
+        <!--密码格式文本-->
+        <a>
+            密码：<input type="password" name="pwd"/><br/>
+        </a>
+        <a>用value实现默认值：<input type="text" name="key" value="我是默认值"/></a>
+        <p>下面是单选框,选择方式 点 name 的值只要是一样的就可以实现互斥，只能选一个</p>
+        <div>
+            <!--checked="checked" 设定默认值-->
+            <input type="radio" name="gender" value="1"checked="checked"/>男
+            <input type="radio" name="gender" value="2" />女
+        </div>
+        <!--多选框，打√方式选择-->
+        <div>
+            <input type="checkbox" name="hobby" value="11" checked="checked"/>男
+            <input type="checkbox" name="hobby" value="12"/>女
+            <input type="checkbox" name="hobby" value="13" checked="checked"/>男&女
+            <input type="checkbox" name="hobby" value="14"/>3p
+        </div>
+        <p>上传文件/图片，一定要在form标签开头出设置属性:enctype="multipart/form-data"</p>
+        <div>
+            <input name="file" type="file"/>
+        </div>
+        <!--下拉框-->
+        <div>
+            <!--单选-->
+            选择你所在的城市：<br/>
+            <select name="city">
+                <option value="bj">北京</option>
+                <!--selected 设定默认值,不设定默认是在代码中第一个出现的-->
+                <option value="sh" selected="default">上海</option>
+                <option value="zz">郑州</option>
+            </select><br>
+            <!--多选-->
+            城市，按住ctrl键可多选：<br/>
+            <select name="multi_city" multiple>
+                <option value="bj">北京</option>
+                <option value="sh">上海</option>
+                <option value="zz" selected="selected">郑州</option>
+            </select>
+        </div>
+
+        <!--显示一个边框，里面的有默认的内容-->
+        <div>
+            <textarea name="memo">默认内容</textarea>
+        </div>
+
+        <!--下面开始提交，当点击 提交 时就会提交到后台-->
+        <input type="submit" value="Submit提交"/>
+        <!--type="button"什么也不会做，可以对其进行装饰-->
+        <input type="button" value="Button提交"/>
+        <input type="reset" value="重置"/>
+    </form>
+
+
+
+    <label for="user">用户名</label> <input id="user" type="text"/>
+
+    <!--在网页上画出一个框，框里可以写内容，内容可以是标签，也可以是内容-->
+    <filedset>
+        <legend>协议</legend>
+        若果你同意此协议请点击下方的同意<br/>
+        按钮。这个同意按钮可以用前面学习<br/>
+        到的 a 标签来实现。此处作为联系用，<br/>
+        点击同意，会自动跳转到百度主页。<br/>
+        <a href="http://www.baidu.com">同意</a>
+    </filedset>
+       <h3>
+           局部区域生效的样式
+       </h3>
+       <div>
+           <style tyep="text/css" scoped>
+               h1 {color: red;}
+               p {color: blue;}
+           </style>
+           <h1> 一级标题 </h1>
+           <p>
+               段落标签
+           </p>
+       </div>
+
+       <h3> 内嵌框架 </h3>
+<!-- seamless 没有边距 sandbox 对内嵌的页面进行控制(表单、js 代码执行权限等)-->
+<iframe seamless srcdoc="<h1>百度</h1>" sandbox="allow-forms" src="http://www.baidu.com"></iframe>       <!-- defer 是下载文件，之后等待页面全部加载完毕，再执行代码 -->
+<!--<script defer-->
+  <!--src="https://code.jquery.com/jquery-3.3.1.min.js"-->
+  <!--integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="-->
+  <!--crossorigin="anonymous" onload="alert('a')"></script>-->
+
+       <!--&lt;!&ndash; 下载文件后，直接执行代码，同时浏览器可以继续解析其下面的内容 &ndash;&gt;-->
+       <!--<script async-->
+  <!--src="https://code.jquery.com/jquery-3.3.1.min.js"-->
+  <!--integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="-->
+  <!--crossorigin="anonymous" onload="alert('b')"></script>-->
+
+    </body>
+</html>

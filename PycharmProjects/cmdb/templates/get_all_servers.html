@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block page_content %}
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>HOST_NAME</th>
+          <th>IP</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td>{{ host_name }}</td>
+          <td>{{ ip }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+{% endblock %}

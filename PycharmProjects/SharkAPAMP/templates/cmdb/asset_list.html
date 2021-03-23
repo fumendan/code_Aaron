@@ -1,0 +1,200 @@
+{% extends 'base.html' %}
+
+{% block page_content %}
+    <div class="row">
+        <div class="col-md-12">
+
+            <!-- START DATATABLE EXPORT -->
+            <div class="panel panel-default">
+                <div class="panel-heading ui-draggable-handle">
+                    <h3 class="panel-title">DataTable Export</h3>
+                    <div class="btn-group pull-right">
+                        <button class="btn btn-danger dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i>
+                            Export Data
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#" onclick="$('#customers2').tableExport({type:'json',escape:'false'});"><img
+                                    src="/static/img/icons/json.png" width="24"> JSON</a></li>
+                            <li><a href="#"
+                                   onclick="$('#customers2').tableExport({type:'json',escape:'false',ignoreColumn:'[2,3]'});"><img
+                                    src="/static/img/icons/json.png" width="24"> JSON (ignoreColumn)</a></li>
+                            <li><a href="#" onclick="$('#customers2').tableExport({type:'json',escape:'true'});"><img
+                                    src="/static/img/icons/json.png" width="24"> JSON (with Escape)</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#" onclick="$('#customers2').tableExport({type:'xml',escape:'false'});"><img
+                                    src="/static/img/icons/xml.png" width="24"> XML</a></li>
+                            <li><a href="#" onclick="$('#customers2').tableExport({type:'sql'});"><img
+                                    src="/static/img/icons/sql.png" width="24"> SQL</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#" onclick="$('#customers2').tableExport({type:'csv',escape:'false'});"><img
+                                    src="/static/img/icons/csv.png" width="24"> CSV</a></li>
+                            <li><a href="#" onclick="$('#customers2').tableExport({type:'txt',escape:'false'});"><img
+                                    src="/static/img/icons/txt.png" width="24"> TXT</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#" onclick="$('#customers2').tableExport({type:'excel',escape:'false'});"><img
+                                    src="/static/img/icons/xls.png" width="24"> XLS</a></li>
+                            <li><a href="#" onclick="$('#customers2').tableExport({type:'doc',escape:'false'});"><img
+                                    src="/static/img/icons/word.png" width="24"> Word</a></li>
+                            <li><a href="#" onclick="$('#customers2').tableExport({type:'powerpoint',escape:'false'});"><img
+                                    src="/static/img/icons/ppt.png" width="24"> PowerPoint</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#" onclick="$('#customers2').tableExport({type:'png',escape:'false'});"><img
+                                    src="/static/img/icons/png.png" width="24"> PNG</a></li>
+                            <li><a href="#" onclick="$('#customers2').tableExport({type:'pdf',escape:'false'});"><img
+                                    src="/static/img/icons/pdf.png" width="24"> PDF</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+                <div class="panel-body">
+                    <div id="customers2_wrapper" class="dataTables_wrapper no-footer row">
+                        <form action="{% url 'cmdb:asset' %}" method="get">
+                            <div class="col-md-4 dataTables_length" style="width: 200px">
+                                每页显示
+
+                                <select name="page_by" class="form-control">
+                                    <option value="{{ page_obj.paginate_by }}">{{ page_obj.page_by }}</option>
+                                    <option value="5">5</option>
+                                    <option value="10">10</option>
+                                    <option value="15">15</option>
+                                    <option value="20">20</option>
+                                </select>条数据
+                            </div>
+                            <input type='submit' class="hide form-control"/>
+
+                            <div class="col-md-4 dataTables_length" style="width: 200px">
+                                状态搜索:
+                                <select name="search_status" class="form-control">
+                                    {% for n, txt in choices_dict.status.items %}
+                                        <option value="{{ n }}">{{ txt }}</option>
+                                    {% endfor %}
+                                    {% for n, txt in dev_status_dict.items %}
+                                        <option value="{{ n }}">{{ txt }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-4 dataTables_length" style="width: 200px">
+                                资产类型搜索:
+                                <select name="search_type" class="form-control">
+                                    {% for n, txt in choices_dict.type.items %}
+                                        <option value="{{ n }}">{{ txt }}</option>
+                                    {% endfor %}
+                                    {% for n, txt in dev_type_dict.items %}
+                                        <option value="{{ n }}">{{ txt }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </form>
+
+                       <!-- 表数据开始 -->
+
+                        <table id="customers2" class="table datatable dataTable no-footer" role="grid"
+                               aria-describedby="customers2_info">
+                            <thead>
+                            <caption>资产信息</caption>
+                             <col align="left" />
+                              <col align="left" />
+                              <col align="right" />
+                            <tr role="row">
+                                <th class="sorting_asc" tabindex="0" aria-controls="customers2" rowspan="1" colspan="1"
+                                    aria-sort="ascending" aria-label="Name: activate to sort column ascending"
+                                >序号
+                                </th>
+                                <th class="sorting" tabindex="0" aria-controls="customers2" rowspan="1" colspan="1"
+                                    aria-label="Position: activate to sort column ascending">
+                                    主机名
+                                </th>
+                                <th class="sorting" tabindex="0" aria-controls="customers2" rowspan="1" colspan="1"
+                                    aria-label="Salary: activate to sort column ascending">
+                                    管理 IP
+                                </th>
+                                <th class="sorting" tabindex="0" aria-controls="customers2" rowspan="1" colspan="1"
+                                    aria-label="Office: activate to sort column ascending">
+                                    资产类型
+                                </th>
+                                <th class="sorting" tabindex="0" aria-controls="customers2" rowspan="1" colspan="1"
+                                    aria-label="Age: activate to sort column ascending">
+                                    城市
+                                </th>
+                                <th class="sorting" tabindex="0" aria-controls="customers2" rowspan="1" colspan="1"
+                                    aria-label="Start date: activate to sort column ascending">
+                                    IDC
+                                </th>
+
+                                <th class="sorting" tabindex="0" aria-controls="customers2" rowspan="1" colspan="1"
+                                    aria-label="Salary: activate to sort column ascending">
+                                    状态
+                                </th>
+                                <th class="sorting" tabindex="0" aria-controls="customers2" rowspan="1" colspan="1"
+                                    aria-label="Salary: activate to sort column ascending">
+                                    更新时间
+                                </th>
+                                <th class="sorting" tabindex="0" aria-controls="customers2" rowspan="1" colspan="1"
+                                    aria-label="Salary: activate to sort column ascending">
+                                    创建时间
+                                </th>
+                                <th class="sorting" tabindex="0" aria-controls="customers2" rowspan="1" colspan="1"
+                                    aria-label="Salary: activate to sort column ascending">
+                                    查看详情
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            {% for item in asset_list %}
+                                <tr role="row" class="{% cycle 'success' "danger" "info" 'active' 'warning' %}">
+                                    <!--参考资料： https://docs.djangoproject.com/en/2.0/ref/templates/builtins/-->
+                                    <td class="sorting_1">{{ forloop.counter }}</td>
+                                    <td class="sorting_1">{{ item.server.hostname }}</td>
+                                    <td class="sorting_1">{{ item.server.manage_ip }}</td>
+                                    <td>{{ item.get_device_type_id_display }}</td>
+                                    <td>{{ item.idc.city }}</td>
+                                    <td>{{ item.idc.name }}</td>
+                                    <td>{{ item.get_device_status_id_display }}</td>
+                                    <td>{{ item.latest_date }}</td>
+                                    <td>{{ item.create_at }}</td>
+                                    <td><a class="asset_detial" href="{% url 'cmdb:host' item.id %}">详细信息</a></td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                        <div class="dataTables_paginate paging_simple_numbers">
+
+                            {{ page_obj.page_str | safe }}
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END DATATABLE EXPORT -->
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>id</th>
+                    <th>主机</th>
+                    <th>城市</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>
+                        {{ page_obj.previous_page_number }}
+                    </td>
+                    <td>
+                        {{ page_obj.paginator.range }}
+                    </td>
+                    <td>
+                        {{ page_obj.paginator.num_pages }}
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

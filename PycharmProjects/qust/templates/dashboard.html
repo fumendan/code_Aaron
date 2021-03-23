@@ -1,0 +1,146 @@
+{% extends 'base.html' %}
+{% block page_content %}
+    <div class="row">
+        <div class="col-md-3 col-md-offset-9">
+
+            <!-- START WIDGET CLOCK -->
+            <div class="widget widget-info widget-padding-sm">
+                <div class="widget-big-int plugin-clock">00:00</div>
+                <div class="widget-subtitle plugin-date">Loading...</div>
+                <div class="widget-controls">
+                    <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip" data-placement="left"
+                       title="Remove Widget"><span class="fa fa-times"></span></a>
+                </div>
+                <div class="widget-buttons widget-c3">
+                    <div class="col">
+                        <a href="#"><span class="fa fa-clock-o"></span></a>
+                    </div>
+                    <div class="col">
+                        <a href="#"><span class="fa fa-bell"></span></a>
+                    </div>
+                    <div class="col">
+                        <a href="#"><span class="fa fa-calendar"></span></a>
+                    </div>
+                </div>
+            </div>
+            <!-- END WIDGET CLOCK -->
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 col-md-offset-1">
+
+        </div>
+
+        <div class="col-md-4 col-md-offset-2">
+            <div class="panel panel-default">
+                <div class="panel-heading ui-draggable-handle">
+                    <div class="panel-title-box">
+                        <h3>Visitors</h3>
+                        <span>Visitors (last month)</span>
+                    </div>
+                    <ul class="panel-controls" style="margin-top: 1px;">
+                        <li><a href="#" class="panel-fullscreen"><span class="fa fa-expand"></span></a></li>
+                        <li><a href="#" class="panel-refresh"><span class="fa fa-refresh"></span></a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span
+                                    class="fa fa-cog"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#" class="panel-collapse"><span class="fa fa-angle-down"></span>
+                                    Collapse</a></li>
+                                <li><a href="#" class="panel-remove"><span class="fa fa-times"></span> Remove</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="panel-body padding-0">
+                    <div class="chart-holder" id="pie_container2"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block js_plugins %}
+<script src="/static/Highcharts6/highstock.js"></script>
+<script src="/static/Highcharts6/highcharts-3d.js"></script>
+<!--图表主题模块-->
+<!--<script src="/static/Highcharts6/themes/dark-unica.js"></script>-->
+<!--导出图表模块-->
+<script src="/static/Highcharts6/modules/exporting.js"></script>
+{% endblock %}
+
+{% block js_code %}
+    <script>
+
+      $.getJSON("/servers/dash_board/", function (callback) {
+        /*  需要后端返回的数据格式
+        callback = {
+            'asset_status': [['上架', 2], ['在线', 9], ['离线', 3]],
+             'asset_type': [['服务器', 11], ['路由器', 1], ['交换机', 2]]
+        }
+       */
+        var status_list = callback.asset_status;
+        var type_list = callback.asset_type;
+        PieView('#pie_container1', '资产状态分布饼图', status_list);
+        PieView('#pie_container2', '资产类型分布饼图', type_list);
+        highchart(callback)
+    });
+
+    //  Highcharts 实现的 3D 饼图
+    function PieView(dom_id, pie_title, charts_data) {
+        $(dom_id).highcharts({
+            chart: {
+                type: 'pie',
+                options3d: {
+                    enabled: true,
+                    alpha: 45,
+                    beta: 0
+                }
+            },
+            title: {
+                text: pie_title
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    depth: 45,  // 厚度
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.name}'
+                    }
+                }
+            },
+            series: [{
+                type: 'pie',
+                name: '3D饼图',
+                data: charts_data
+            }]
+        });
+    };
+
+    //  Highcharts 实现的 3D 柱状图
+    function highchart(charts_data) {
+
+        /*
+           {
+               'asset_status': [['上架', 2], ['在线', 9], ['离线', 3]],
+               'asset_type': [['服务器', 11], ['路由器', 1], ['交换机', 2]]
+           }
+        */
+        var dispy_names = [];
+        var dispy_data = [];
+
+        for (var idx in charts_data['asset_type']) {
+            // 把资产类型的名字添加到数组中
+            dispy_names.push(charts_data['asset_type'][idx][0]);
+            dispy_data.push(charts_data['asset_type'][idx][1]);
+        };
+    };
+
+    </script>
+{% endblock %}

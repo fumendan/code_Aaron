@@ -1,0 +1,248 @@
+{% extends 'base.html' %}
+
+<!--页面标题开始-->
+
+{% block page_title %} 模块管理 {% endblock %}
+
+<!--页面标题结束-->
+
+<!--页面内容开始-->
+
+{% block page_content %}
+
+
+
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h3><span class="fa fa-mail-forward"></span> File Input</h3>
+
+                    <!--在 form 标签中添加 novalidate 表示在前端不自动校验字段-->
+                    <form id="Ajax_FD_submit" enctype="multipart/form-data" class="form-horizontal">
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <label for="id_module_name" class="col-md-3 col-xs-12" style="font-size: 16px">模块名称</label>
+                                  {{ form_obj.module_name }}
+                                  {{ form_boj.errors.module_name.0 }}
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                                <div class="col-md-12">
+                                    <div class="col-md-6">
+                                        <label for="id_module_type" class="col-md-3 col-xs-12" style="font-size: 16px">
+                                            模&nbsp&nbsp块&nbsp&nbsp类&nbsp&nbsp别
+                                        </label>
+                                        {{ form_obj.module_type }}
+                                        {{ form_boj.errors.module_type.0 }}
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="id_module_lang" class="col-md-3 col-xs-12" style="font-size: 16px">
+                                            开&nbsp&nbsp发&nbsp&nbsp语&nbsp&nbsp言
+                                        </label>
+                                  {{ form_obj.module_lang }}
+                                  {{ form_obj.errors.module_lang.0 }}</div>
+                                </div>
+                            </div>
+
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <label for="id_module_info" class="col-md-3 col-xs-12" style="font-size: 16px">
+                                    模&nbsp&nbsp块&nbsp&nbsp描&nbsp&nbsp述&nbsp&nbsp信&nbsp&nbsp息
+                                </label>
+
+                                {{ form_obj.module_info }}
+                                {{ form_obj.errors.module_info.0 }}
+                                <span class="help-block">
+                                    请&nbsp写&nbsp上&nbsp关&nbsp于&nbsp此&nbsp模&nbsp块&nbsp的&nbsp描&nbsp述&nbsp信&nbsp息
+                                </span>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <label for="id_module_file" class="col-md-3 col-xs-12" style="font-size: 16px">
+                                    请&nbsp&nbsp上&nbsp&nbsp传&nbsp&nbsp模&nbsp&nbsp块&nbsp&nbsp文&nbsp&nbsp件
+                                </label>
+                                {{ form_obj.module_file }}
+                                {{ form_obj.errors.module_file.0 }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <label>HTML5 下拉框</label><br/>
+                                <input list="cars" />
+                                <datalist id="cars">1
+                                    <option value="BMW">
+                                    <option value="Ford">
+                                    <option value="Volvo">
+                                </datalist>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+
+        </div>
+        <!--<div class="col-md-4">
+
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h3><span class="fa fa-sitemap"></span> File Tree</h3>
+                    <p>File Tree is a configurable, AJAX file browser plugin for jQuery.</p>
+                    <div id="filetree"></div>
+                </div>
+            </div>
+
+        </div>-->
+    </div>
+
+{#                        <div class="form-group">#}
+{#                            <div class="col-md-12">#}
+{#                            <div class="dropdown-menu open" style="max-height: 280px; overflow: hidden; min-height: 0px;">#}
+{#                                <ul class="dropdown-menu inner selectpicker" role="menu" style="max-height: 278px; overflow-y: auto; min-height: 0px;"><li rel="0" class="selected"><a tabindex="0" class="" style=""><span class="text">Choose option</span><i class="glyphicon glyphicon-ok icon-ok check-mark"></i></a></li><li rel="1"><a tabindex="0" class="" style=""><span class="text">Male</span><i class="glyphicon glyphicon-ok icon-ok check-mark"></i></a></li><li rel="2"><a tabindex="0" class="" style=""><span class="text">Female</span><i class="glyphicon glyphicon-ok icon-ok check-mark"></i></a></li></ul></div>                            </div>#}
+{##}
+{#                        </div>#}
+
+
+    <!--<div class="row">
+        <div class="col-md-9">
+
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h3><span class="fa fa-download"></span> Dropzone</h3>
+                    <p>Add form with class <code>dropzone</code> to get dropzone box</p>
+                    <form action="#" class="dropzone"></form>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-md-3">
+
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h3><span class="fa fa-download"></span> Mini dropzone</h3>
+                    <p>Add form with class <code>dropzone dropzone-mini</code> to get mini dropzone box</p>
+                    <form action="#" class="dropzone dropzone-mini"></form>
+                </div>
+            </div>
+
+        </div>
+
+    </div>-->
+
+
+{% endblock %}
+<!--页面内容结束-->
+
+
+<!-- START SCRIPTS -->
+
+{% block js_plugins %}
+    <!-- jQuery 文件处理插件 -->
+{#    <script type="text/javascript" src="/static/js/plugins/filetree/jqueryFileTree.js"></script>#}
+    <script type="text/javascript" src="/static/js/plugins/fileinput/fileinput.min.js"></script>
+    <!--<script type="text/javascript" src="js/plugins/dropzone/dropzone.min.js"></script>-->
+
+{% endblock %}
+
+{% block js_code %}
+    <script>
+    $(function () {
+                //alert('ok')
+
+        $("button[type='submit']").attr("id","ajax_btn");
+
+        $('#ajax_btn').click(function () {
+            var submit_obj = $(".shark_form")
+
+            var fmd_obj = new FormData();  // 实例化一个对象
+            // 向对象中添加数据，格式：fmd_obj.append('key','value')
+
+            $.each(submit_obj, function (k,v) {
+                fmd_obj.append(v['name'], v['value'])
+            });
+
+            // 添加文件对象
+            fmd_obj.append('module_file', document.getElementById("id_module_file").files[0]);
+            fmd_obj.append('csrfmiddlewaretoken','{{ csrf_token }}') // 解决认证问题
+            // 也可以像下面一样，一次性添加所有的数据，
+            //fmd_obj.append('data',$("#Ajax_FD_submit").serialize());
+
+            $.ajax({
+                url: "/octopus/models.html/",
+                type: 'POST',
+                data: fmd_obj,
+                processData: false,  // tell jQuery not to process the data
+                contentType: false,  // tell jQuery not to set contentType
+                success:function (callback) {
+                    /*
+                    * JSON.stringify(obj)   序列化    JS 对象 --> 字符串
+                    * JSON.parse(str)       反序列化  字符串   --> JS 对象
+                    * */
+                    var res_obj = JSON.parse(callback)
+
+                    // alert(typeof(res_obj.e));
+                    if(res_obj.status){
+                        alert(res_obj.data);
+                    } else {
+                        // 循环一个字典对象，
+                        // k --> key，v --> value
+                        $.each(res_obj.error, function(k,v) {
+                            alert(v[0].message);
+                        });
+
+                        // console.log(res_obj.error)
+                    }
+                },
+            });
+            return false; // 最好返回false，因为如果按钮类型是submit,或者是 button 标签时，
+                          // 则表单自己又会以 GET 的方式再提交一次;返回false阻止表单再次提交
+        });
+    });
+    </script>
+
+
+    <!--<script>
+        $(function () {
+            alert('ok')
+            // 实现文件树功能, 需完善
+            $("#file-simple").fileinput({
+                showUpload: false,
+                showCaption: false,
+                browseClass: "btn btn-danger",
+                fileType: "any"
+            });
+            $("#filetree").fileTree({
+                root: '/',
+                script: '/static/assets/filetree/jqueryFileTree.php',
+                expandSpeed: 100,
+                collapseSpeed: 100,
+                multiFolder: false
+            }, function (file) {
+                alert(file);
+            }, function (dir) {
+                setTimeout(function () {
+                    page_content_onresize();
+                }, 200);
+            });
+        });
+    </script>-->
+
+{% endblock %}
+
+
+{#{"status": false,#}
+{#"data": null,#}
+{#"error": {"module_name": [#}
+{#                           {"message": "\u6a21\u5757\u540d\u79f0\u4e0d\u80fd\u4e3a\u7a7a","code": "required"}#}
+{#                        ],#}
+{#          "module_info": [#}
+{#                            {"message": "This field is required.", "code": "required"}],#}
+{#            "module_file": [#}
+{#                            {"message": "This field is required.", "code": "required"}]}}#}

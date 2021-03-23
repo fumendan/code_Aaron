@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>Highcharts One</title>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<!-- 图表容器 DOM -->
+<div id="container" style="width: 600px;height:400px;"></div>
+
+</body>
+<!-- 引入 highcharts.js ，建议在 body 便签下面引入 -->
+<!-- 启动 Django 项目的状态下，引入 highcharts.js -->
+
+<script src="/static/Highcharts6/highcharts.js"></script>
+
+<!-- 假如用 Pycharm 中不启动项目使用，请保证配置了正确的相对路径 -->
+<script src="../static/Highcharts6/highcharts.js"></script>
+<script src="../static/Highcharts6/themes/skies.js"></script>
+
+<script>
+    // 图表配置
+    var options = {
+        chart: {
+            type: 'column' // bar column                      //指定图表的类型，默认是折线图（line）
+        },
+        title: {
+            text: '我的第一个图表'                 // 标题
+        },
+        xAxis: {
+            categories: ['苹果', '香蕉', '橙子']   // x 轴分类
+        },
+        yAxis: {
+            title: {
+                text: '吃水果个数'                // y 轴标题
+            }
+        },
+         series: [{                              // 数据列
+            name: '杨哥',                        // 数据列名
+            data: [5, 3, 4]                     // 数据
+        }, {
+            name: '鲨鱼',
+            data: [2, 3, 3]
+        }]
+    };
+    // 图表初始化函数
+    var chart = Highcharts.chart('container', options);
+</script>
+
+</html>

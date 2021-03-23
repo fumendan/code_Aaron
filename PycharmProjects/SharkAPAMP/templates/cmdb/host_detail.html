@@ -1,0 +1,457 @@
+{% extends 'base.html' %}
+
+{% block page_content %}
+
+    <div class="page-content-wrap">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default tabs">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li><a id="a_auto_click"  href="#tab-first" role="tab" data-toggle="tab"><span
+                                id="auto_click"></span>基本信息</a></li>
+                        <li><a href="#tab-second" role="tab" data-toggle="tab">硬件信息</a></li>
+                        <li><a href="#tab-third" role="tab" data-toggle="tab">变更日志</a></li>
+                    </ul>
+                    <div class="panel-body tab-content">
+                        <!--主机基本信息开始-->
+                        <div class="tab-pane" id="tab-first">
+                            <div class="well well-sm  btn-danger text-center" style="font-size: large">资产基本信息</div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <table class="table">
+                                        <caption>主机信息</caption>
+
+                                        <tr>
+                                            <th>主机名</th>
+                                            <td> {{ server_dict.hostname }} </td>
+                                        </tr>
+                                        <tr>
+                                            <th>管理 IP</th>
+                                            <td> {{ server_dict.manage_ip }} </td>
+                                        </tr>
+                                        <tr>
+                                            <th>状 态</th>
+                                            <td> {{ asset_obj.get_device_status_id_display }} </td>
+                                        </tr>
+                                        <tr>
+                                            <th>类 型</th>
+                                            <td> {{ asset_obj.get_device_type_id_display }} </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="col-md-6">
+                                    <table class="table">
+                                        <tr>
+                                            <th>部门</th>
+                                            <td> {{ asset_obj.app_class.business.name }} </td>
+                                        </tr>
+                                        <tr>
+                                            <th>部门负责人</th>
+                                            <td> {{ asset_obj.app_class.business.supervisor.email }} </td>
+                                        </tr>
+                                        <tr>
+                                            <th>部门负责人联系方式</th>
+                                            <td> {{ asset_obj.app_class.business.supervisor.mobile }} </td>
+                                        </tr>
+                                        <tr>
+                                            <th>业务</th>
+                                            <td> {{ asset_obj.app_class.name }} </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <table class="table">
+                                        <tr>
+                                            <th>城 市</th>
+                                            <td> {{ asset_obj.idc.city }} </td>
+                                        </tr>
+                                        <tr>
+                                            <th>地 址</th>
+                                            <td> {{ asset_obj.idc.address }} </td>
+                                        </tr>
+                                        <tr>
+                                            <th>机 房</th>
+                                            <td> {{ asset_obj.idc.name }} </td>
+                                        </tr>
+                                        <tr>
+                                            <th>机 柜</th>
+                                            <td> {{ asset_obj.cabinet_num.name }} </td>
+                                        </tr>
+                                        <tr>
+                                            <th>机柜内的自编号</th>
+                                            <td> {{ asset_obj.cabinet_order }} </td>
+                                        </tr>
+
+                                    </table>
+                                </div>
+                                <div class="col-md-6">
+                                    <table class="table">
+                                        <tr>
+                                            <th class="">所属运维组</th>
+                                            <td> {{ asset_obj.app_class.manager.name }} </td>
+                                        </tr>
+                                    </table>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <table class="table table-striped">
+                                                {% for item in asset_obj.app_class.manager.users.all %}
+                                                    <tr>
+                                                        <th>组成员</th>
+                                                        <td> {{ item.email }} </td>
+                                                    </tr>
+                                                {% endfor %}
+                                            </table>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <table class="table table-striped">
+                                                {% for item in asset_obj.app_class.manager.users.all %}
+                                                    <tr>
+                                                        <th>联系电话</th>
+                                                        <td> {{ item.mobile }} </td>
+                                                    </tr>
+                                                {% endfor %}
+                                            </table>
+                                        </div>
+                                    </div>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <!--主机基本信息结束-->
+                        <!--主机硬件详情开始-->
+                        <div class="tab-pane" id="tab-second">
+                            <div class="page-title">
+                                <h3>硬件信息</h3>
+                            </div>
+                            <div class="panel-body">
+                                <p>There available 5 classes: <code>active, success, info, warning, danger</code>. Add
+                                    it to TR tag.</p>
+                                <div class="col-md-12 btn btn-group-lg btn-primary">服务器基础信息</div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                            asset hostname manage_ip
+
+                                            <tr>
+                                                <th>操作系统</th>
+                                                <th>系统版本</th>
+                                                <th>内核信息</th>
+                                                <th></th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td>{{ server_dict.os_name }}</td>
+                                                <td>{{ server_dict.os_version }}</td>
+                                                <td>{{ server_dict.kernel }}</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 ">
+                                        <div class="col-md-12 btn btn-success" style="font-size: large">主 版</div>
+
+                                        <table class="table table-striped">
+                                            <!-- table-striped 不支持 IE8 --->
+                                            <tr>
+                                                <th>主板型号</th>
+                                                <td>{{ server_dict.model }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>硬 件 平 台</th>
+                                                <td>{{ server_dict.machine }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>主板制造商</th>
+                                                <td>{{ server_dict.manufacturer }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>主板 SN</th>
+                                                <td>{{ server_dict.sn }}</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="col-md-12 btn btn-success" style="font-size: large">C P U</div>
+
+                                        <table class="table table-striped">
+                                            <tr>
+                                                <th>CPU型号</th>
+                                                <td>{{ server_dict.model_name }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>CPU 架构</th>
+                                                <td>{{ server_dict.cpu_type }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>CPU物理个数</th>
+                                                <td>{{ server_dict.physical_count }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>每颗 CPU 核心数</th>
+                                                <td>{{ server_dict.physical_cores }}</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel-body">
+                                <div class="col-md-12 btn btn-group-lg btn-info" style="font-size: large">内存</div>
+                                <table class="table table-bordered">
+                                    <thead>
+                                    <tr>
+                                        <th>插槽位</th>
+                                        <th>容量</th>
+                                        <th>频率</th>
+                                        <th>型号</th>
+                                        <th>制造商</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for k in memory %}
+                                        <tr class="{% cycle 'success' "danger" "info" 'active'  'warning' %}">
+                                            <td>{{ k.0 }} </td>
+                                            <td>{{ k.1 }}</td>
+                                            <td>{{ k.2 }}</td>
+                                            <td>{{ k.3 }}</td>
+                                            <td>{{ k.4 }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="panel-body">
+                                <div class="btn btn-group-justified btn-danger" style="font-size: large">硬盘</div>
+                                <table class="table table-bordered">
+                                    <thead>
+                                    <tr>
+                                        <th>插槽位</th>
+                                        <th>容量</th>
+                                        <th>接口类型</th>
+                                        <th>型号</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for item in disk %}
+                                        <tr class="{% cycle 'success' "danger" "info" 'active'  'warning' %}">
+                                            <td>{{ item.0 }}</td>
+                                            <td>{{ item.1 }}</td>
+                                            <td>{{ item.2 }}</td>
+                                            <td>{{ item.3 }}</td>
+                                        </tr>
+                                    {% endfor %}
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="panel-body">
+                                <div class="col-md-10 col-md-offset-1 btn btn-group-lg btn-success"
+                                     style="font-size: large">网卡
+                                </div>
+                                <table class="table table-bordered">
+                                    <thead>
+                                    <tr>
+                                        <th>网卡名</th>
+                                        <th>IP 地址</th>
+                                        <th>网络掩码</th>
+                                        <th>MAC 地址</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    {% for item in nic %}
+                                        <tr class="{% cycle 'success' "danger" "info" 'active'  'warning' %}">
+                                            <!--参考资料： https://docs.djangoproject.com/en/2.0/ref/templates/builtins/-->
+                                            <td>{{ item.0 }}</td>
+                                            <td>{{ item.1 }}</td>
+                                            <td>{{ item.2 }}</td>
+                                            <td>{{ item.3 }}</td>
+                                        </tr>
+                                    {% endfor %}
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!--主机硬件详情结束-->
+                        <!--资产变更开始-->
+                        <div class="tab-pane" id="tab-third" style="background-color: #A6C6FF">
+                            <div class="page-title"><h3>资产变更记录</h3></div>
+                            <!-- START TIMELINE -->
+                            <div class="timeline">
+                                {% for item in change_log_dict %}
+                                    <!-- START TIMELINE ITEM -->
+                                    <div class="timeline-item timeline-main">
+                                        <div class="timeline-date">2018</div>
+                                    </div>
+                                    <!-- END TIMELINE ITEM -->
+                                    {% if item.operator__email %}
+                                        <!-- START TIMELINE ITEM -->
+                                        <div class="timeline-item">
+                                            <div class="timeline-item-info">{{ item.create_at | date:"Y-m-d H:i:s" }}</div>
+                                            <div class="timeline-item-icon"><span class="fa fa-user"></span></div>
+                                            <div class="timeline-item-content">
+                                                <div class="timeline-heading" style="padding-bottom: 10px;">
+                                                    <img src="/static/assets/images/users/user3.jpg">
+                                                    <span>{{ item.operator__email }}</span>
+                                                </div>
+                                                <div class="timeline-body comments">
+                                                    <div class="comment-item">
+                                                        {% for p in item.content %}
+                                                            <p style="font-size: 15px">{{ p }}</p>
+                                                        {% endfor %}
+                                                        {#                                               <small cass="text-muted">15min ago</small>#}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- END TIMELINE ITEM -->
+
+                                    {% else %}
+
+                                        <!-- START TIMELINE ITEM -->
+                                        <div class="timeline-item timeline-item-right">
+                                            <div class="timeline-item-info">{{ item.create_at | date:"Y-m-d H:i:s" }}</div>
+                                            <div class="timeline-item-icon"><span class="fa fa-desktop"></span></div>
+                                            <div class="timeline-item-content">
+                                                <div class="timeline-heading padding-bottom-0"
+                                                     style="padding-bottom: 10px;">
+                                                    <h6>自动上报</h6>
+                                                </div>
+                                                <div class="timeline-body comments">
+                                                    <div class="comment-item">
+                                                        {% for p in item.content %}
+                                                            <p style="font-size: 15px">{{ p }}</p>
+                                                        {% endfor %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- END TIMELINE ITEM -->
+                                    {% endif %}
+                                {% endfor %}
+
+                                <!-- START TIMELINE ITEM -->
+                                <div class="timeline-item timeline-main">
+                                    <div class="timeline-date">
+                                        <a href="#"><span class="fa fa-map-marker"></span>起始位置</a>
+                                    </div>
+                                </div>
+                                <!-- END TIMELINE ITEM -->
+                            </div>
+                            <!-- END TIMELINE -->
+
+                            <!------- 第二种排列方式  --------->
+
+                            <!-- START TIMELINE -->
+                            <div class="timeline timeline-right">
+
+                                <!-- START TIMELINE ITEM -->
+                                <div class="timeline-item timeline-main">
+                                    <div class="timeline-date">2014</div>
+                                </div>
+                                <!-- END TIMELINE ITEM -->
+
+                                <!-- START TIMELINE ITEM -->
+                                <div class="timeline-item">
+                                    <div class="timeline-item-info">06 Oct 2014</div> <!--左侧-->
+                                    <div class="timeline-item-icon"> <!--中间开始-->
+                                        <span class="fa fa-user"></span> <!--中间图标-->
+                                    </div>
+                                    <!--中间结束-->
+
+                                    <!--右侧开始-->
+                                     <div class="timeline-item-content">
+                                            <div class="timeline-heading" style="padding-bottom: 10px;">
+                                                <img src="/static/assets/images/users/user5.jpg">
+                                                <span>用户名</span>
+                                            </div>
+                                     </div>
+                                    <div class="timeline-item-icon"> <!-- 中间图标 -->
+                                        <span class="fa fa-users"></span>
+                                    </div>
+                                    <div class="timeline-body comments">
+                                        <div class="comment-item">
+                                            示例模板
+                                        </div>
+                                    </div>
+                                </div>
+                            <!--右侧结束-->
+
+                                <!-- END TIMELINE ITEM -->
+
+                                <!-- START TIMELINE ITEM -->
+                                {% for item in change_log_dict %}
+
+                                    <div class="timeline-item">
+                                        <div class="timeline-item-info">{{ item.create_at | date:"Y-m-d H:i:s" }}</div> <!-- 左侧 -->
+                                        {% if item.operator__email %}
+                                            <div class="timeline-item-icon"> <!-- 中间图标 -->
+                                                <span class="fa fa-user"></span>
+                                            </div>
+
+                                            <!-- 右侧内容开始 -->
+                                            <div class="timeline-item-content">
+                                                <div class="timeline-heading" style="padding-bottom: 10px;">
+                                                    <img src="/static/assets/images/users/user5.jpg">
+                                                    <span>{{ item.operator__email }}</span>
+                                                </div>
+                                            </div>
+                                        {% else %}
+                                            <div class="timeline-item-icon"> <!-- 中间图标 -->
+                                                <span class="fa fa-desktop"></span>
+                                            </div>
+
+                                            <!-- 右侧内容开始 -->
+                                            <div class="timeline-item-content">
+                                                <div class="timeline-heading" style="padding-bottom: 10px;">
+                                                    <h6>自动更新</h6>
+                                                </div>
+                                            </div>
+                                        {% endif %}
+                                        <!-- 右侧具体内容详情开始 -->
+                                        <div class="timeline-body comments">
+                                            <div class="comment-item">
+                                                {% for p in item.content %}
+                                                    <p style="font-size: 15px">{{ p }}</p>
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                        <!-- 右侧具体内容详情结束 -->
+                                    </div>
+                                    <!-- 右侧内容结束 -->
+                                {% endfor %}
+                                <!-- END TIMELINE ITEM -->
+
+                                <!-- START TIMELINE ITEM -->
+
+                                <div class="timeline-item timeline-main"> <!-- 类 timeline-main 用于单独一行 -->
+                                    <div class="timeline-date">
+                                        <span class="fa fa-map-marker"></span>
+                                        <a href="#">起始位置</a>
+                                    </div>
+                                </div>
+                                <!-- END TIMELINE ITEM -->
+                            </div>
+                            <!-- END TIMELINE -->
+                            <!--资产变更结束-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block js_code %}
+
+    <script>
+            $("#a_auto_click").click();  // 实现主机详情页码的 tab 标签自动点击事件
+    </script>
+
+{% endblock %}

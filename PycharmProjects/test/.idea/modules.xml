@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$USER_HOME$/PycharmProjects/Aaron/.idea/Aaron.iml" filepath="$USER_HOME$/PycharmProjects/Aaron/.idea/Aaron.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../SharkAPAMP/.idea/SharkAPAMP.iml" filepath="$PROJECT_DIR$/../SharkAPAMP/.idea/SharkAPAMP.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../agent/.idea/agent.iml" filepath="$PROJECT_DIR$/../agent/.idea/agent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../cmdb/.idea/cmdb.iml" filepath="$PROJECT_DIR$/../cmdb/.idea/cmdb.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../menu/.idea/menu.iml" filepath="$PROJECT_DIR$/../menu/.idea/menu.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../modify_conf/.idea/modify_conf.iml" filepath="$PROJECT_DIR$/../modify_conf/.idea/modify_conf.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../qust/.idea/qust.iml" filepath="$PROJECT_DIR$/../qust/.idea/qust.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../server_info/.idea/server_info.iml" filepath="$PROJECT_DIR$/../server_info/.idea/server_info.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/test.iml" filepath="$PROJECT_DIR$/.idea/test.iml" />
+    </modules>
+  </component>
+</project>
