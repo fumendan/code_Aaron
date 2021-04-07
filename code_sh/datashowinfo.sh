@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-#zhangxue
+# author:Aaron
 #
 # 2020-08-30更新 添加脚本使用说明
 # 2020-07-07更新 缩减代码
